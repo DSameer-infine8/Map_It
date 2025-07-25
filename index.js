@@ -22,6 +22,15 @@ const main = async () => {
 
 main().then(() => { console.log("Connection Successful") }).catch((err) => { console.log(err) });
 
+app.get("/", (req, res, err) => {
+    res.send("welcome");
+});
 
 
-console.log(port);
+app.get("/home", (req, res) => {
+    res.render("home.ejs");
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+})

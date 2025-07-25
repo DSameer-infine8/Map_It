@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Grid+Single:wght@100..900&family=Boldonse&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Grid+Single:wght@100..900&family=Bitcount+Prop+Single:wght@100..900&family=Boldonse&family=Special+Gothic+Expanded+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Grid+Single:wght@100..900&family=Bitcount+Prop+Single:wght@100..900&family=Boldonse&family=Quicksand:wght@300..700&family=Special+Gothic+Expanded+One&display=swap');
+
+*{
+    margin:0;
+    padding: 0;
+}
+.dark-mode{
+        /*dark mode*/
+            --primary-100: #FF6600;
+            --primary-200: #ff983f;
+            --primary-300: #ffffa1;
+            --accent-100: #F5F5F5;
+            --accent-200: #929292;
+            --text-100: #FFFFFF;
+            --text-200: #e0e0e0;
+            --bg-100: #1D1F21;
+            --bg-200: #2c2e30;
+            --bg-300: #444648;
+}
+
+.light-mode{
+        /*light mode*/
+            --primary-100: #FF6600;
+            --primary-200: #ff983f;
+            --primary-300: #ffffa1;
+            --accent-100: #F5F5F5;
+            --accent-200: #929292;
+            --text-100: #1d1f21;
+            --text-200: #444648;
+            --bg-100: #ffffff;
+            --bg-200: #d2d2d2;
+            --bg-300: #a1a1a1;
+}
+
+
+body {
+    position: sticky;
+    top: 0;
+    overflow-x: hidden;
+    background-color: var(--bg-100);
+    color: var(--text-100);
+}
+
+.bg {
+    height: 250vh;
+    background: #ff5500;
+
+    background: radial-gradient(circle, rgba(255, 85, 0, 0.867) 10%, var(--bg-100) 60%);
+
+}
+
+.page1 {
+    position: sticky;
+    height: 94vh;
+    width: auto;
+    top: 0;
+}
+
+.page2 {
+    position: sticky;
+    top: 0;
+    height: 200vh;
+    width: auto;
+    background-color: var(--bg-200);
+    z-index: 100;
+    border-radius: 30px 30px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.box2 {
+    height: 400px;
+    width: 400px;
+    background-color: var(--bg-300);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+h1{
+    color:var(--text-100);
+    font-size: 2rem;
+}
+a{
+    text-decoration: none;
+}
+p{
+    color:var(--text-200)
+}
+
+.line{
+    margin-left: auto;
+    margin-right: auto;
+    height: 1px;
+    width: 95vw;
+}
+
+nav{
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+font-family: "Bitcount Grid Single", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.sign {
+    width: 12vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#F5F5F5;
+    color:#1d1f21;
+    padding: 2px 8px;
+    border-radius: 2rem;
+    font-size: 18px;
+}
+.login {
+    color: var(--text-100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 2rem;
+    font-size: 18px;
+}
+
+.svgg{
+    position: absolute;
+    top: 50px;
+    color: var(--text-100);
+}
+
+path{
+    stroke: var(--text-200);
+}
+
+.para{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    flex-direction: column;
+}
+
+.para h1{
+    font-size: 80px;
+    font-family: "Special Gothic Expanded One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+}
+
+.sub-title{
+        background: -webkit-linear-gradient(220deg ,var(--primary-300), var(--primary-100));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: "Special Gothic Expanded One", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+}
+
+.subpara{
+    padding-top: 20px;
+    width: 710px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.subpara p{
+    font-size: 18px;
+    font-family: "Quicksand", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-style: normal;
+}
+
+
+/*button*/
+
+.animated-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 36px;
+    border: 4px solid;
+    border-color: transparent;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: var(--text-100);
+    box-shadow: 0 0 0 2px var(--primary-200);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button svg {
+    position: absolute;
+    width: 24px;
+    fill: var(--bg-100);
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 {
+    right: 16px;
+}
+
+.animated-button .arr-2 {
+    left: -25%;
+}
+
+.animated-button .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-300);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+    position: relative;
+    z-index: 1;
+    transform: translateX(-12px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+    box-shadow: 0 0 0 12px transparent;
+    color: #212121;
+    border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 {
+    right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+    left: 16px;
+}
+
+.animated-button:hover .text {
+    transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+    fill: #212121;
+}
+
+.animated-button:active {
+    scale: 0.95;
+    box-shadow: 0 0 0 4px var(--primary-100);
+}
+
+.animated-button:hover .circle {
+    width: 220px;
+    height: 220px;
+    opacity: 1;
+}
+
+.firstBtn{
+    background-color: var(--primary-200);
+}
+
+.firstBtn:hover {
+    background-color: var(--primary-300);
+}
+
+.btns{
+    margin-top: 30px;
+    padding-top: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 60vw;
+
+}

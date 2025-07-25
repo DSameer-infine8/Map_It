@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map_it</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-mode">
+
+    <div class="page1">
+        <div class="bg">
+            <nav>
+                <div class="logobox">
+                    <a href="/home">
+                        <h1 class="logo">Map_it</h1>
+                    </a>
+                </div>
+                <div class="sign">
+                    <a href="/login" class="login">Log-in</a>
+                    <a href="/signup" class="signup">Sign-Up</a>
+                </div>
+            </nav>
+            <div class="svgg">
+                <svg width="1900" height="200" stroke-width="3">
+                    <path d="M 20 10 Q 300 10 1500 10" stroke="black" fill="transparent" />
+                </svg>
+            </div>
+            <div class="para">
+                <h1>Your Journey To</h1>
+                <h1 class="sub-title">Expert Developer</h1>
+                <div class="subpara">
+                    <p>Follow structured, interactive roadmaps to master any technology. From beginner to</p>
+                    <p> expert, we'll guide you every step of the way.</p>
+                </div>
+                <div class="btns">
+                    <button class="animated-button firstBtn">
+                        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                        <span class="text">Start Your Journey</span>
+                        <span class="circle"></span>
+                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <button class="animated-button">
+                        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                        <span class="text">Explore Roadmaps</span>
+                        <span class="circle"></span>
+                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="page2">
+        <div class="box2"></div>
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+        integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+        integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        //SVG Starts
+
+        let finalPath = "M 20 10 Q 500 10 1500 10";
+        let path;
+
+        let svg = document.querySelector(".svgg");
+
+
+        svg.addEventListener("mousemove", (e) => {
+            const rect = svg.getBoundingClientRect();
+            const relativeY = e.clientY - rect.top;
+            const relativeX = e.clientX - rect.left;
+
+            path = `M 20 10 Q ${relativeX} ${relativeY} 1500 10`;
+
+            gsap.to(".svgg path", {
+                attr: { d: path },
+                duration: 0.1,
+                ease: "power2.inOut",
+            });
+        });
+
+        svg.addEventListener("mouseleave", (e) => {
+
+
+            gsap.to(".svgg path", {
+                attr: { d: finalPath },
+                duration: 1.5,
+                ease: "elastic.out(1,0.2)"
+            });
+        });
+
+    </script>
+</body>
+
+</html>
