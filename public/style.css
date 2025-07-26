@@ -299,3 +299,72 @@ path{
     width: 60vw;
 
 }
+
+.threeicons{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    height: 180px;
+    width: 70vw;
+    margin: 0 auto;
+}
+
+
+.i{
+    height: 90%;
+    width: 20%;
+        display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+}
+
+.iconImg{
+    height: 55px;
+    width: 55px;
+    background-color: #444648;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.i img{
+    height: 48px;
+}
+
+.i h1{
+    font-family: "Special Gothic Expanded One", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+
+}
+
+.i h3{
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight:lighter;
+    font-style: normal;
+}
+
+.icon1 img{
+    filter: brightness(0) saturate(100%) invert(49%) sepia(100%) saturate(494%) hue-rotate(-7deg) brightness(105%) contrast(103%);
+}
+.icon1 .iconImg{
+    background-color: #ff8a4f87;
+}
+
+.icon2 img{
+            filter: brightness(0) saturate(100%) invert(88%) sepia(20%) saturate(1700%) hue-rotate(10deg) brightness(110%) contrast(95%);
+}
+.icon2 .iconImg {
+    background-color:#ffff908d;
+}
+
+.icon3 img {
+            filter: invert(100)
+}
+
+.icon3 .iconImg {
+    background-color: rgba(255, 255, 255, 0.53)
+}
