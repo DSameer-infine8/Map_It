@@ -166,7 +166,53 @@
 
 
 
-        <div class="box2"></div>
+        <div class="boxs">
+            <% roleBasedCards.forEach(role=> { %>
+                <div class="box">
+                    <div class="role-icon">
+                        <img src="/images/code.png">
+                    </div>
+                    <h2>
+                        <%= role.name %>
+                    </h2>
+                    <p>
+                        <%= role.desc %>
+                    </p>
+                    <div class="idetails">
+                        <div class="detial1"><img src="/images/wall-clock.png">
+                            <h4>
+                                <%= role.months %>
+                            </h4>
+                        </div>
+                        <div class="detial2"><img src="/images/group.png">
+                            <h4>
+                                <%= role.NumUsers %>
+                            </h4>
+                        </div>
+                        <div class="detial3"><img src="/images/checked.png">
+                            <h4>
+                                Beginner To Advance
+                            </h4>
+                        </div>
+                    </div>
+
+                    <h3>Core Technology:</h3>
+                    <% let techs=role.technologies %>
+                        <% techs.forEach(tech=> { %>
+                            <p>
+                                <%=tech %>
+                            </p>
+                            <% }) %>
+                                <form method="post" action="/role">
+                                    <input type="hidden" name="name" value="<%= role.name %>">
+                                    <button>Start Career Path</button>
+                                </form>
+                </div>
+                <% }) %>
+
+
+        </div>
+
     </div>
 
 
@@ -210,6 +256,14 @@
                 duration: 1.5,
                 ease: "elastic.out(1,0.2)"
             });
+        });
+
+        gsap.from(".box", {
+            opacity: 0,
+            duration: 1,
+            y: 40,
+            delay: 1,
+            stagger: 1
         });
 
     </script>

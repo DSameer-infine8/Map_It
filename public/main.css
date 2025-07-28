@@ -4,7 +4,7 @@
 .page2 {
     position: sticky;
     top: 0;
-    height: 200vh;
+    height: auto;
     width: auto;
     background-color: var(--bg-200);
     z-index: 100;
@@ -12,18 +12,25 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-
 }
 
-.box2 {
+.boxs{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+}
+.box {
+    margin: 0 auto;
     margin-top: 30px;
-    height: 400px;
+    height: auto;
     width: 400px;
     background-color: var(--bg-300);
-    margin-left: auto;
-    margin-right: auto;
     border-radius: 2rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.box img{
+    height: 50px;
 }
 
 .search-p{
