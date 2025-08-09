@@ -20,8 +20,13 @@ const roadmapSchema = new mongoose.Schema({
 const cardSchema = new mongoose.Schema({
     name: { type: String, required: true },
     skill: { type: String, required: true },
-    type: { type: String, required: true }, // e.g., "frontend", "backend"
+    type: { type: String, required: true },
+    for: { type: String },
     desc: { type: String },
+    what: { type: [String], required: true },
+    why: { type: [String], required: true },
+    when: { type: [String], required: true },
+    iconURL: { type: String },
     months: { type: Number },
     NumUsers: { type: Number },
     technologies: { type: [String] },

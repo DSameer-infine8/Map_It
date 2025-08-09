@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map_it</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="heroSection.css">
     <link rel="stylesheet" href="main.css">
 </head>
@@ -16,6 +17,7 @@
             <nav>
                 <div class="logobox">
                     <a href="/home">
+                        <img src="/images/advance.png">
                         <h1 class="logo">Map_it</h1>
                     </a>
                 </div>
@@ -142,75 +144,91 @@
             </div>
         </div>
         <div class="btn-para">
-            <p>Whether you're exploring a career role, building essential skills, or learning through real-world
+            <p class="describe">Whether you're exploring a career role, building essential skills, or learning through
+                real-world
                 projects,
                 we've got you covered. </p><br>
             <p>Choose your path and start building!</p>
 
             <div class="radio-inputs">
                 <label class="radio">
-                    <input type="radio" name="radio" checked="">
+                    <input type="radio" name="radio" value="role" <%=selectedType==='role' ? 'checked' : '' %> >
                     <span class="name">Role-Based</span>
                 </label>
                 <label class="radio">
-                    <input type="radio" name="radio">
+                    <input type="radio" name="radio" value="skill" <%=selectedType==='skill' ? 'checked' : '' %> >
                     <span class="name">Skill-Based</span>
                 </label>
-
                 <label class="radio">
-                    <input type="radio" name="radio">
+                    <input type="radio" name="radio" value="project" <%=selectedType==='project' ? 'checked' : '' %> >
                     <span class="name">Project-Based</span>
                 </label>
             </div>
         </div>
 
 
-
         <div class="boxs">
-            <% roleBasedCards.forEach(role=> { %>
+            <% cards.forEach(role=> { %>
                 <div class="box">
-                    <div class="role-icon">
-                        <img src="/images/code.png">
+                    <div class="box-header">
+                        <div class="role-icon">
+                            <img src="<%= role.iconURL %>">
+                        </div>
+                        <h2>
+                            <%= role.name %>
+                        </h2>
                     </div>
-                    <h2>
-                        <%= role.name %>
-                    </h2>
-                    <p>
-                        <%= role.desc %>
-                    </p>
                     <div class="idetails">
-                        <div class="detial1"><img src="/images/wall-clock.png">
+                        <div class="d detial1"><img src="/images/wall-clock.png">
                             <h4>
-                                <%= role.months %>
+                                <%= role.months+ " Months" %>
                             </h4>
                         </div>
-                        <div class="detial2"><img src="/images/group.png">
+                        <div class="d detial2"><img src="/images/group.png">
                             <h4>
                                 <%= role.NumUsers %>
                             </h4>
                         </div>
-                        <div class="detial3"><img src="/images/checked.png">
-                            <h4>
-                                Beginner To Advance
-                            </h4>
+                        <div class="d detial3">
+                            <% if (role.for==="Advanced" ) { %>
+                                <img src="/images/advance.png">
+                                <% } else if (role.for==="Intermediate 🡺 Advanced" ) { %>
+                                    <img src="/images/intermediate.png">
+                                    <% } else { %>
+                                        <img src="/images/beginner.png">
+                                        <% } %>
+
+
+                                            <h4>
+                                                <%= role.for %>
+                                            </h4>
                         </div>
                     </div>
 
+                    <br><br>
                     <h3>Core Technology:</h3>
-                    <% let techs=role.technologies %>
-                        <% techs.forEach(tech=> { %>
-                            <p>
-                                <%=tech %>
-                            </p>
-                            <% }) %>
-                                <form method="post" action="/role">
-                                    <input type="hidden" name="name" value="<%= role.name %>">
-                                    <button>Start Career Path</button>
-                                </form>
+                    <div class="core-tech">
+                        <% let techs=role.technologies %>
+                            <% techs.forEach(tech=> { %>
+                                <p>
+                                    <%=tech %>
+                                </p>
+                                <% }) %>
+                    </div>
+
+                    <div class="start">
+                        <div class="btn">
+                            <a class="fancy" onclick="handleRoleClick(event, '<%= role.name %>')">
+                                <span class="top-key"></span>
+                                <span class="text">Start Learning</span>
+                                <span class="bottom-key-1"></span>
+                                <span class="bottom-key-2"></span>
+                            </a>
+                        </div>
+
+                    </div>
                 </div>
                 <% }) %>
-
-
         </div>
 
     </div>
@@ -225,6 +243,47 @@
         integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        function handleRoleClick(event, roleName) {
+            event.preventDefault();
+            localStorage.setItem("selectedRole", roleName);
+            window.location.href = "/role"; // This will trigger the GET /role route
+        }
+
+
+
+
+        const radios = document.querySelectorAll('.radio-inputs input[type="radio"]');
+
+        // Attach click listener to each radio
+        radios.forEach(radio => {
+            radio.addEventListener('change', function () {
+                const selectedValue = this.value;
+
+                // Set flag to scroll after reload
+                localStorage.setItem("scrollToTarget", "true");
+
+                // Redirect to server route
+                window.location.href = `/home?type=${selectedValue}`;
+            });
+        });
+
+
+
+
+        window.addEventListener("DOMContentLoaded", () => {
+            // Check flag in localStorage
+            if (localStorage.getItem("scrollToTarget") === "true") {
+
+                // Scroll to target id
+                const target = document.querySelector(".search-p");
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+
+                // Remove flag so it only happens once
+                localStorage.removeItem("scrollToTarget");
+            }
+        });
 
         //SVG Starts
 
@@ -260,10 +319,9 @@
 
         gsap.from(".box", {
             opacity: 0,
-            duration: 1,
-            y: 40,
-            delay: 1,
-            stagger: 1
+            duration: 0.5,
+            y: 20,
+            stagger: 0.5,
         });
 
     </script>

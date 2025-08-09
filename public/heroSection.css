@@ -65,6 +65,10 @@ h1{
 }
 a{
     text-decoration: none;
+        font-family: "Quicksand", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
 }
 p{
     color:var(--text-200)
@@ -91,6 +95,7 @@ font-family: "Bitcount Grid Single", system-ui;
 }
 
 .sign {
+    height: 40px;
     width: 12vw;
     display: flex;
     justify-content: space-between;
@@ -102,7 +107,7 @@ font-family: "Bitcount Grid Single", system-ui;
     align-items: center;
     background-color:#F5F5F5;
     color:#1d1f21;
-    padding: 2px 8px;
+    padding: 0px 6px;
     border-radius: 2rem;
     font-size: 18px;
 }

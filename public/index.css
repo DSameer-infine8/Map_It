@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Grid+Single:wght@100..900&family=Bitcount+Prop+Single:wght@100..900&family=Boldonse&family=Quicksand:wght@300..700&family=Special+Gothic+Expanded+One&display=swap');
+
+
 :root {
     --primary-100: #FF6600;
     --primary-200: #ff983f;
@@ -23,7 +26,7 @@ body {
 }
 
 .top {
-    height: 300px;
+    height: auto;
     width: 100vw;
 }
 
@@ -38,6 +41,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    top: -250px;
 }
 
 .skill-title {
@@ -84,17 +88,18 @@ body {
 
 .grid-line {
     display: grid;
-    grid-template-columns: 1fr 60px 1fr;
+    grid-template-columns: 1fr 85px 1fr;
     padding: 10px 0;
     margin: 30px 0;
 
 }
 
-h1 {
+.grid-container h1 {
+    font-size: 24px;
     position: absolute;
     background-color: #ff983f;
-    height: 60px;
-    width: 60px;
+    height: 85px;
+    width: 85px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -107,11 +112,13 @@ h1 {
 .right h2 {
     padding: 15px;
     color: var(--primary-300);
+    font-size: 1.8rem;
 }
 
 .left h2 {
     padding: 15px;
     color: var(--primary-300);
+    font-size: 1.8rem;
 }
 
 .left {
@@ -124,7 +131,6 @@ h1 {
 li {
     display: flex;
     padding: 5px;
-    list-style-type: none;
     font-size: 20px;
     color: #ffffff;
 
@@ -155,6 +161,7 @@ li {
     padding: 5px 10px;
     list-style-type: none;
     font-size: 20px;
+    list-style-type: none;
 }
 
 .left label {
@@ -281,29 +288,195 @@ label {
 
 .click {
     cursor: pointer;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 100;
 }
 
 
 .box {
     position: absolute;
     height: 200px;
-    width: 50px;
+    width: 60px;
     border: 15px solid black;
     border-radius: 2rem;
     display: none;
 }
 
 .right .box {
-    left: -40px;
+    left: -55px;
     z-index: 0;
 }
 
 .left .box {
-    right: -40px;
+    right: -55px;
     z-index: 0;
     top: 58px;
 }
 
 .display {
     display: none;
+}
+.img {
+    height: 50px;
+    padding: 20px 30px;
+        background-color: #ffffff52;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 1rem;
+}
+
+.imgs {
+    height: 50px;
+    filter: invert(100);
+    padding: 20px 30px;
+}
+
+.title-name{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: #e0e0e0;
+}
+
+.desc{
+    font-size: 20px;
+    padding: 0px 30px;
+    color: #e0e0e0;
+        font-family: "Quicksand", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+
+}
+
+
+
+button{
+    background-color: #ffffff00;
+}
+
+.threeW{
+    display: flex;
+    align-items: center;
+    position: relative;
+    position: relative;
+    top: -355px;
+    right: -665px;
+}
+
+h2{
+    color: #F5F5F5;
+        font-family: "Special Gothic Expanded One", sans-serif;
+            font-weight: 50;
+}
+
+.three{
+    display: flex;
+}
+.threeW-box{
+    margin-top: 90px;
+}
+
+.threeImg{
+    position: relative;
+    top:0px
+}
+.threebox{
+    margin: 0 auto;
+    width: 50vw;
+    height: auto;
+    background-color: #000000;
+    padding: 15px;
+    border-radius: 1.5rem;
+}
+.threebox h2{
+    font-size: 20px;
+    padding: 5px;
+}
+
+.line{
+    width: 100%;
+    height: 1px;
+    background-color: #F5F5F5;
+}
+
+.q{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.q img{
+    width: 40px;
+    filter: invert(100);
+}
+
+
+p{
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.show{
+    display: none;
+}
+
+
+.line {
+    height: 2px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.line ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+
+.line li.show {
+    display: none;
+    opacity: 0;
+}
+
+
+.line ul {
+    padding-left: 20px;
+    /* Indent bullets */
+    margin: 0;
+    list-style-type: disc;
+    /* Show filled circle bullets */
+}
+
+.line li {
+    list-style-type: disc !important;
+    /* force bullets */
+    display: list-item !important;
+    list-style-position: outside;
+    color: #000000;
+            font-family: "Quicksand", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 500;
+                font-style: normal;
+}
+
+
+.left li,
+.right li {
+    display: flex;
+    padding: 5px;
+    list-style-type: none;
+                font-family: "Quicksand", sans-serif;
+                    font-optical-sizing: auto;
+                    font-weight: 500;
+                    font-style: normal;
+}
+
+.title-name h1{
+        font-family: "Special Gothic Expanded One", sans-serif;
+            font-weight: 100;
+}
+
+.yes h2{
+    font-size: 24px;
 }

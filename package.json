@@ -2,7 +2,7 @@
   "name": "map_it",
   "version": "1.0.0",
   "description": "Website for Clear RoadMaP\"",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
