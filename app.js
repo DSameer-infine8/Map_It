@@ -5,12 +5,13 @@ const port = process.env.PORT;
 const mongoURL = process.env.mongoURL;
 
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
 const Card = require("./models/roadmap");
 const path = require("path");
 const methodOverride = require("method-override");
-
+const session = require('express-session');
+const flash = require('connect-flash');
+const app = express();
 // Setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -21,9 +22,11 @@ app.use(methodOverride("_method"));
 
 
 
+
 // MongoDB Connection
 const main = async () => {
     await mongoose.connect(mongoURL);
+    await dis();
 }
 main().then(() => { console.log("Connection Successful") }).catch((err) => { console.log(err) });
 
@@ -34,7 +37,41 @@ const dis = async () => {
     skillBasedCards = await Card.find({ type: "Skill-Based" });
     projectBasedCards = await Card.find({ type: "Project-Based" });
 }
-dis();
+
+
+
+app.use(session({
+    secret: 'mysupersecretkey',
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use(flash());
+
+
+
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+});
+
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    req.flash('error_msg', 'Something went wrong on our side.');
+    res.redirect('back');
+});
+
+const authRoutes = require('./routes/authR');
+
+app.use('/auth', authRoutes);
+
+
+
+
+
+
 
 // Routes
 app.get("/", (req, res) => {
@@ -64,8 +101,8 @@ app.post("/api/role", async (req, res) => {
 });
 
 
-app.get("/sign",(req, res)=>{
-    
+app.get("/recommend", (req, res) => {
+    res.render('recommend.ejs');
 })
 
 

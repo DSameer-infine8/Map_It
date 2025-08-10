@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Grid+Single:wght@100..900&family=Bitcount+Prop+Single:wght@100..900&family=Boldonse&family=Quicksand:wght@300..700&family=Special+Gothic+Expanded+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /*dark mode*/
+    --primary-100: #FF6600;
+    --primary-200: #ff983f;
+    --primary-300: #ffffa1;
+    --accent-100: #F5F5F5;
+    --accent-200: #929292;
+    --text-100: #FFFFFF;
+    --text-200: #e0e0e0;
+    --bg-100: #1D1F21;
+    --bg-200: #2c2e30;
+    --bg-300: #444648;
+}
+
+body{
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 100;
+    background-color: var(--bg-100);
+}
+
+h1{
+    color: var(--accent-100);
+}
+
+.bg-video{
+    height: 100vh;
+    width: 40vw;
+}
+
+video{
+    object-fit: cover;
+}
+.boxInfo{
+    position: absolute;
+    height: 90vh;
+    width: 60%;
+    background-color: var(--bg-100);
+    border-radius: 2rem;
+}
+.full{
+    display: flex;
+}
+
+.left{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linebar{
+    margin: 0 auto;
+    height: 100%;
+    width: 10%;
+        display: flex;
+            justify-content:space-around;
+            align-items: center;
+        flex-direction: column;
+        color: var(--accent-100);
+}
+
+.linebar img{   
+    height: 50px;
+}
+
+.s{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.s h2{
+    top: 10px;
+    position: absolute;
+    height: 50px;
+}
+
+.l{
+    position: absolute;
+    height: 0px;
+    width: 3px;
+    background-color: black;
+}
+
+.line1{
+    top: 125px;
+}
+
+.line2{
+    top: 336px
+}
