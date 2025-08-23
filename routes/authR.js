@@ -1,4 +1,3 @@
-
 const express = require('express');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
@@ -90,8 +89,11 @@ router.post('/verify-otp', wrapAsync(async (req, res) => {
     await user.save();
 
     delete req.session.pendingEmail;
+    req.session.verifiedEmail = email;
     req.flash('success_msg', 'Email verified successfully. You can now log in.');
-    res.send('Successfully registered');
+    setTimeout(() => {
+        res.redirect("/recommend/quiz");
+    }, 2000);
 }));
 
 router.post('/resend-otp', wrapAsync(async (req, res) => {
@@ -133,27 +135,31 @@ router.post('/login', wrapAsync(async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
 
+
     if (!user) {
         req.flash('error_msg', 'User not found');
-        return res.redirect('/login');
+        return res.redirect('/recommend');
     }
-    if (!user.isVerified) {
+    if (user.isVerified !== true) {
         req.flash('error_msg', 'Email not verified. Please verify OTP.');
-        return res.redirect('/verify');
+        return res.redirect('/recommend');
     }
     if (!password) {
         req.flash('error_msg', 'Password is required');
-        return res.redirect('/login');
+        return res.redirect('/recommend');
     }
     if (!(await user.comparePassword(password))) {
         req.flash('error_msg', 'Incorrect password');
-        return res.redirect('/login');
+        return res.redirect('/recommend');
     }
 
 
     req.session.user = { id: user._id, email: user.email, name: user.name };
     req.flash('success_msg', 'Login successful');
-    res.redirect('/dashboard');
+    req.session.verifiedEmail = email;
+    setTimeout(() => {
+        res.redirect("/recommend/quiz");
+    }, 2000);
 }));
 
 

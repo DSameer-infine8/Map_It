@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map_it</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/ai.css">
+</head>
+
+<body>
+    <div class="full">
+        <div class="left">
+            <video class="bg-video" autoplay muted loop playsinline disablePictureInPicture
+                oncontextmenu="return false;">
+                <source src="/Wavy.mp4" type="video/mp4">
+                <!-- optional fallback -->
+                Your browser does not support the video tag.
+            </video>
+            <div class="boxInfo">
+                <div class="linebar">
+                    <div class="s step1">
+                        <img src="/images/hand-drawn.png">
+                        <h2>1</h2>
+                    </div>
+                    <div class="l line1"></div>
+                    <div class="s step2">
+                        <img src="/images/hand-drawn.png">
+                        <h2>2</h2>
+                    </div>
+                    <div class="l line2"></div>
+                    <div class="s step3">
+                        <img src="/images/hand-drawn.png">
+                        <h2>3</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <h1 class="reco">Skills recommended</h1>
+            <div class="toprecommends">
+                <% for( let i=0; i < recommendedSkills.length; i++ ) { %>
+                    <div class="topreco">
+                        <h1 class="placed color<%= i+1 %>">
+                            <%= i+1 %>
+                        </h1>
+                        <h2 class="recommended place<%= i %>">
+                            <%= recommendedSkills[i] %>
+                        </h2>
+                    </div>
+                    <% } %>
+
+            </div>
+
+
+
+            <% if (success_msg) { %>
+                <p class="success">
+                    <%= success_msg %>
+                </p>
+                <% } %>
+                    <% if (error_msg) { %>
+                        <p class="error">
+                            <%= error_msg %>
+                        </p>
+                        <% } %>
+
+        </div>
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+        integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+        integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>

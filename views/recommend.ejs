@@ -26,67 +26,98 @@
                     </div>
                     <div class="l line1"></div>
                     <div class="s step2">
-                        <img src="images/hand-drawn.png">
+                        <img class="show" src="images/hand-drawn.png">
                         <h2>2</h2>
                     </div>
                     <div class="l line2"></div>
                     <div class="s step3">
-                        <img src="images/hand-drawn.png">
+                        <img class="show" src="images/hand-drawn.png">
                         <h2>3</h2>
                     </div>
                 </div>
             </div>
         </div>
         <div class="right">
+            <h1 class="reco">Skill recommendation</h1>
             <!-- Signup Form -->
-            <div class="signup-container">
-                <h2>Sign Up</h2>
-                <form action="/auth/register" method="POST" class="signup-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <div class="form-container">
+                <div class="form-btns">
+                    <button class="signUp">Sign-Up</button>
+                    <button class="logIn">Log-In</button>
+                </div>
+                <div class="fill">
+                    <div class="signup-container">
+                        <h2>Sign Up</h2>
+                        <form action="/auth/register" method="POST" class="signup-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" placeholder="Enter your password"
+                                    required>
+                            </div>
+
+                            <button type="submit">Send OTP</button>
+                        </form>
+
+
+                        <hr>
+
+                        <!-- Verify OTP Form -->
+                        <div class="verify-container">
+                            <h2>Verify OTP</h2>
+                            <form action="/auth/verify-otp" method="POST" class="verify-form">
+
+                                <div class="form-group">
+                                    <label for="otp">OTP</label>
+                                    <input type="text" id="otp" name="otp"
+                                        placeholder="Enter the OTP sent to your email" required>
+                                </div>
+
+                                <button class="submit" type="submit">Verify Email & Sign-Up</button>
+                            </form>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                    </div>
+                    <div class="logIn-container show">
+                        <h2>Log-In</h2>
+                        <form action="/auth/login" method="POST" class="login-form">
 
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                    </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
 
-                    <button type="submit">Sign Up</button>
-                </form>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" placeholder="Enter your password"
+                                    required>
+                            </div>
+
+                            <button class="submit" type="submit">Log-In</button>
+                        </form>
+                    </div>
+                </div>
+
+                <% if (success_msg) { %>
+                    <p class="success">
+                        <%= success_msg %>
+                    </p>
+                    <% } %>
+                        <% if (error_msg) { %>
+                            <p class="error">
+                                <%= error_msg %>
+                            </p>
+                            <% } %>
             </div>
-
-            <hr>
-
-            <!-- Verify OTP Form -->
-            <div class="verify-container">
-                <h2>Verify OTP</h2>
-                <form action="/auth/verify-otp" method="POST" class="verify-form">
-
-                    <div class="form-group">
-                        <label for="otp">OTP</label>
-                        <input type="text" id="otp" name="otp" placeholder="Enter the OTP sent to your email" required>
-                    </div>
-
-                    <button class="submit" type="submit">Verify</button>
-                </form>
-            </div>
-
-            <% if (success_msg) { %>
-                <p class="success">
-                    <%= success_msg %>
-                </p>
-                <% } %>
-                    <% if (error_msg) { %>
-                        <p class="error">
-                            <%= error_msg %>
-                        </p>
-                        <% } %>
         </div>
 
     </div>
@@ -100,17 +131,41 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
-        const btnSubmit = document.querySelector(".submit");
+        const verified = document.querySelector(".verify-form");
+        const logined = document.querySelector(".login-form");
 
-        btnSubmit.addEventListener("click", () => {
+        logined.addEventListener("submit", (e) => {
+            e.preventDefault(); // stop form from reloading page immediately
             gsap.to(".line1", {
-                delay: 1,
                 duration: 1,
-                height: "165px",
+                height: "200px",
             });
+            logined.submit();
 
         });
 
+        verified.addEventListener("submit", (e) => {
+            e.preventDefault(); // stop form from reloading page immediately
+            gsap.to(".line1", {
+                duration: 1,
+                height: "200px",
+            });
+            verified.submit();
+        });
+
+        const signupBtn = document.querySelector(".signUp");
+        const loginBtn = document.querySelector(".logIn");
+        const signupContain = document.querySelector(".signup-container");
+        const loginContain = document.querySelector(".logIn-container")
+
+        signupBtn.addEventListener("click", () => {
+            loginContain.classList.add("show");
+            signupContain.classList.remove("show");
+        });
+        loginBtn.addEventListener("click", () => {
+            loginContain.classList.remove("show");
+            signupContain.classList.add("show");
+        })
     </script>
 </body>
 

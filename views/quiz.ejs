@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map_it</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/quiz.css">
+</head>
+
+<body>
+    <div class="full">
+        <div class="left">
+            <video class="bg-video" autoplay muted loop playsinline disablePictureInPicture
+                oncontextmenu="return false;">
+                <source src="/Wavy.mp4" type="video/mp4">
+                <!-- optional fallback -->
+                Your browser does not support the video tag.
+            </video>
+            <div class="boxInfo">
+                <div class="linebar">
+                    <div class="s step1">
+                        <img src="/images/hand-drawn.png">
+                        <h2>1</h2>
+                    </div>
+                    <div class="l line1"></div>
+                    <div class="s step2">
+                        <img src="/images/hand-drawn.png">
+                        <h2>2</h2>
+                    </div>
+                    <div class="l line2"></div>
+                    <div class="s step3">
+                        <img class="show" src="/images/hand-drawn.png">
+                        <h2>3</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <h1 class="reco">Skill recommendation</h1>
+            <% if (user.isVerified===true) { %>
+                <form class="quiz-form" action="/submit-answers" method="POST">
+
+                    <!-- Q1 -->
+                    <div class="question">
+                        <p>1. How old are you?</p>
+                        <label><input type="radio" name="age" value="18-24" required> 18–24 years</label>
+                        <label><input type="radio" name="age" value="25-35"> 25–35 years</label>
+                        <label><input type="radio" name="age" value="35+"> 35+ years</label>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="question">
+                        <p>2. What is your education background?</p>
+                        <label><input type="radio" name="education" value="IT" required> IT / Computer Science</label>
+                        <label><input type="radio" name="education" value="Non-IT"> Non-IT</label>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="question">
+                        <p>3. What best describes your current profession?</p>
+                        <label><input type="radio" name="profession" value="Student" required> Student</label>
+                        <label><input type="radio" name="profession" value="IT Professional"> IT Professional</label>
+                        <label><input type="radio" name="profession" value="Non-IT Professional"> Non-IT
+                            Professional</label>
+                        <label><input type="radio" name="profession" value="Freelancer"> Freelancer</label>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="question">
+                        <p>4. What is your coding experience level?</p>
+                        <label><input type="radio" name="coding_experience" value="None" required> None (never
+                            coded)</label>
+                        <label><input type="radio" name="coding_experience" value="Beginner"> Beginner</label>
+                        <label><input type="radio" name="coding_experience" value="Intermediate"> Intermediate</label>
+                        <label><input type="radio" name="coding_experience" value="Advanced"> Advanced</label>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="question">
+                        <p>5. Which tools/technologies do you already know?</p>
+                        <label><input type="radio" name="tools" value="HTML/CSS/JS" required> HTML / CSS /
+                            JavaScript</label>
+                        <label><input type="radio" name="tools" value="Python"> Python</label>
+                        <label><input type="radio" name="tools" value="Java"> Java</label>
+                        <label><input type="radio" name="tools" value="SQL"> SQL</label>
+                        <label><input type="radio" name="tools" value="Cloud"> Cloud tools (AWS, Azure, GCP)</label>
+                        <label><input type="radio" name="tools" value="UI/UX Tools"> UI/UX design tools</label>
+                        <label><input type="radio" name="tools" value="None"> None</label>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="question">
+                        <p>6. What is your project experience level?</p>
+                        <label><input type="radio" name="project_experience" value="No Projects" required> No projects
+                            yet</label>
+                        <label><input type="radio" name="project_experience" value="Mini Projects"> Mini
+                            projects</label>
+                        <label><input type="radio" name="project_experience" value="1-2 Projects"> 1–2 projects</label>
+                        <label><input type="radio" name="project_experience" value="Professional Projects"> Professional
+                            projects</label>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="question">
+                        <p>7. How much time can you dedicate weekly?</p>
+                        <label><input type="radio" name="time_commitment" value="<5" required> Less than 5 hours</label>
+                        <label><input type="radio" name="time_commitment" value="5-10"> 5–10 hours</label>
+                        <label><input type="radio" name="time_commitment" value="10+"> 10+ hours</label>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="question">
+                        <p>8. What is your learning preference?</p>
+                        <label><input type="radio" name="learning_style" value="Visual" required> Visual (videos,
+                            diagrams)</label>
+                        <label><input type="radio" name="learning_style" value="Reading"> Reading /
+                            Documentation</label>
+                        <label><input type="radio" name="learning_style" value="Hands-on"> Hands-on projects</label>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="question">
+                        <p>9. Which field interests you the most?</p>
+                        <label><input type="radio" name="interest_area" value="Web Development" required> Web
+                            Development</label>
+                        <label><input type="radio" name="interest_area" value="Data Science"> Data Science</label>
+                        <label><input type="radio" name="interest_area" value="Mobile Apps"> Mobile Apps</label>
+                        <label><input type="radio" name="interest_area" value="Cloud Computing"> Cloud Computing</label>
+                        <label><input type="radio" name="interest_area" value="UI/UX Design"> UI/UX Design</label>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="question">
+                        <p>10. Do you prefer working alone or in a team?</p>
+                        <label><input type="radio" name="work_preference" value="Alone" required> Alone</label>
+                        <label><input type="radio" name="work_preference" value="Team"> Team</label>
+                        <label><input type="radio" name="work_preference" value="Both"> Both</label>
+                    </div>
+
+                    <!-- Q11 -->
+                    <div class="question">
+                        <p>11. What is your career goal?</p>
+                        <label><input type="radio" name="career_goal" value="Job" required> Job in a company</label>
+                        <label><input type="radio" name="career_goal" value="Freelancing"> Freelancing</label>
+                        <label><input type="radio" name="career_goal" value="Startup"> Start my own product</label>
+                    </div>
+
+                    <!-- Q12 -->
+                    <div class="question">
+                        <p>12. How soon do you want to start earning from this skill?</p>
+                        <label><input type="radio" name="earning_goal" value="<3 months" required> Within 3
+                            months</label>
+                        <label><input type="radio" name="earning_goal" value="3-6 months"> 3–6 months</label>
+                        <label><input type="radio" name="earning_goal" value="6+ months"> More than 6 months</label>
+                    </div>
+
+                    <!-- Q13 -->
+                    <div class="question">
+                        <p>13. What is your budget for learning?</p>
+                        <label><input type="radio" name="budget" value="Free" required> Free only</label>
+                        <label><input type="radio" name="budget" value="<50"> Less than $50</label>
+                        <label><input type="radio" name="budget" value=">50"> More than $50</label>
+                    </div>
+
+                    <!-- Q14 -->
+                    <div class="question">
+                        <p>14. Do you prefer creative or analytical work?</p>
+                        <label><input type="radio" name="creative_analytical" value="Creative" required>
+                            Creative</label>
+                        <label><input type="radio" name="creative_analytical" value="Analytical"> Analytical</label>
+                        <label><input type="radio" name="creative_analytical" value="Both"> Both</label>
+                    </div>
+
+                    <!-- Q15 -->
+                    <div class="question">
+                        <p>15. How comfortable are you with math?</p>
+                        <label><input type="radio" name="math_skill" value="Low" required> Low</label>
+                        <label><input type="radio" name="math_skill" value="Medium"> Medium</label>
+                        <label><input type="radio" name="math_skill" value="High"> High</label>
+                    </div>
+
+                    <!-- Q16 -->
+                    <div class="question">
+                        <p>16. Do you enjoy problem-solving?</p>
+                        <label><input type="radio" name="problem_solving" value="Yes" required> Yes</label>
+                        <label><input type="radio" name="problem_solving" value="No"> No</label>
+                        <label><input type="radio" name="problem_solving" value="Sometimes"> Sometimes</label>
+                    </div>
+
+                    <!-- Q17 -->
+                    <div class="question">
+                        <p>17. Which industry do you see yourself in?</p>
+                        <label><input type="radio" name="industry_preference" value="Tech" required> Tech</label>
+                        <label><input type="radio" name="industry_preference" value="Finance"> Finance</label>
+                        <label><input type="radio" name="industry_preference" value="Healthcare"> Healthcare</label>
+                        <label><input type="radio" name="industry_preference" value="Education"> Education</label>
+                        <label><input type="radio" name="industry_preference" value="Design"> Design</label>
+                    </div>
+
+                    <!-- Q18 -->
+                    <div class="question">
+                        <p>18. How do you handle challenges?</p>
+                        <label><input type="radio" name="challenge_handling" value="Give up quickly" required> Give up
+                            quickly</label>
+                        <label><input type="radio" name="challenge_handling" value="Try to solve"> Try to solve</label>
+                        <label><input type="radio" name="challenge_handling" value="Enjoy solving"> Enjoy
+                            solving</label>
+                    </div>
+
+                    <!-- Q19 -->
+                    <div class="question">
+                        <p>19. Do you want a skill with high remote work potential?</p>
+                        <label><input type="radio" name="remote_work" value="Yes" required> Yes</label>
+                        <label><input type="radio" name="remote_work" value="No"> No</label>
+                        <label><input type="radio" name="remote_work" value="Doesn't matter"> Doesn't matter</label>
+                    </div>
+
+                    <!-- Q20 -->
+                    <div class="question">
+                        <p>20. How important is a high salary for you?</p>
+                        <label><input type="radio" name="salary_priority" value="Very Important" required> Very
+                            important</label>
+                        <label><input type="radio" name="salary_priority" value="Somewhat Important"> Somewhat
+                            important</label>
+                        <label><input type="radio" name="salary_priority" value="Not Important"> Not important</label>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form>
+
+                <% }else{ %>
+                    <h4>Sign-in To Start the Quiz</h4>
+
+                    <% } %>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+        integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+        integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+
+
+
+    </script>
+</body>
+
+</html>
