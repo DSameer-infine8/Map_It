@@ -227,7 +227,7 @@
                         <label><input type="radio" name="salary_priority" value="Not Important"> Not important</label>
                     </div>
 
-                    <button type="submit">Submit</button>
+                    <button class="submit" type="submit">Submit</button>
                 </form>
 
                 <% }else{ %>
@@ -247,7 +247,17 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
-
+        const quiz = document.querySelector(".quiz-form");
+        quiz.addEventListener("submit", (e) => {
+            e.preventDefault(); // stop form from reloading page immediately
+            gsap.to(".line2", {
+                duration: 1,
+                height: "180px",
+            });
+            setTimeout(() => {
+                quiz.submit();
+            }, 1500);
+        });
 
 
     </script>

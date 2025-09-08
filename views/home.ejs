@@ -63,7 +63,7 @@
                                 d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
                             </path>
                         </svg>
-                        <span class="text">Explore Roadmaps</span>
+                        <span class="text exploreRoad">Explore Roadmaps</span>
                         <span class="circle"></span>
                         <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -270,6 +270,16 @@
             });
         });
 
+        const exploreRoad = document.querySelector(".exploreRoad");
+
+        exploreRoad.addEventListener("click", () => {
+            const target = document.querySelector(".search-p");
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+
+
 
 
 
@@ -286,6 +296,28 @@
                 // Remove flag so it only happens once
                 localStorage.removeItem("scrollToTarget");
             }
+        });
+
+
+
+        // Search functionality
+        const searchInput = document.querySelector("#main .input");
+        const cards = document.querySelectorAll(".box");
+
+        searchInput.addEventListener("keyup", function () {
+            const query = searchInput.value.toLowerCase();
+
+            cards.forEach(card => {
+                const name = card.querySelector("h2").textContent.toLowerCase();
+                const techs = Array.from(card.querySelectorAll(".core-tech p")).map(p => p.textContent.toLowerCase());
+
+                // Check if query matches role name or technologies
+                if (name.includes(query) || techs.some(t => t.includes(query))) {
+                    card.style.display = "block"; // show
+                } else {
+                    card.style.display = "none"; // hide
+                }
+            });
         });
 
         //SVG Starts

@@ -96,12 +96,13 @@ video {
 }
 
 .line1 {
-    top: 135px;
-    height: 180px;
+    top: 125px;
+    height: 166px;
 }
 
 .line2 {
-    top: 336px
+    top: 336px;
+    height: 165px;
 }
 
 .right {
@@ -109,9 +110,23 @@ video {
     width: 60vw;
     position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: #000000;
+    overflow: hidden;
     overflow-y: scroll;
+}
+.road{
+    background-color: var(--bg-200);
+    height: auto;
+    width: calc(90% + 20px);
+    border-radius: 2rem;
+    padding: 10px;
+    margin-bottom: 30px;
+
+}
+.road-title{
+    margin-top: 80px;
 }
 
 .reco {
@@ -179,4 +194,23 @@ h4 {
 }
 .color3 {
     background-color: var(--primary-300);
+}
+
+.boxs{    overflow-x: scroll;
+    gap: 10px;
+    scrollbar-width: none;
+        /* hides scrollbar */
+        -ms-overflow-style: none;
+        /* IE & old Edge */
+}
+
+.box{
+    position: relative;
+    border-radius: 2rem;
+}
+
+.btn{
+    position: static;
+    bottom: 10px;
+    position: absolute;
 }

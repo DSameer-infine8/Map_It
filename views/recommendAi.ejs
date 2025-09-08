@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map_it</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/ai.css">
 </head>
 
@@ -53,6 +54,200 @@
 
             </div>
 
+            <h1 class="road-title">Roadmaps</h1>
+            <div class="road">
+
+                <div class="boxs">
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="role-icon">
+                                <img src="<%= skill1Card.iconURL %>">
+                            </div>
+                            <h2>
+                                <%= skill1Card.name %>
+                            </h2>
+                        </div>
+                        <div class="idetails">
+                            <div class="d detial1"><img src="/images/wall-clock.png">
+                                <h4>
+                                    <%= skill1Card.months+ " Months" %>
+                                </h4>
+                            </div>
+                            <div class="d detial2"><img src="/images/group.png">
+                                <h4>
+                                    <%= skill1Card.NumUsers %>
+                                </h4>
+                            </div>
+                            <div class="d detial3">
+                                <% if (skill1Card.for==="Advanced" ) { %>
+                                    <img src="/images/advance.png">
+                                    <% } else if (skill1Card.for==="Intermediate 🡺 Advanced" ) { %>
+                                        <img src="/images/intermediate.png">
+                                        <% } else { %>
+                                            <img src="/images/beginner.png">
+                                            <% } %>
+
+
+                                                <h4>
+                                                    <%= skill1Card.for %>
+                                                </h4>
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <h3>Core Technology:</h3>
+                        <div class="core-tech">
+                            <% let techs1=skill1Card.technologies %>
+                                <% techs1.forEach(tech=> { %>
+                                    <p>
+                                        <%=tech %>
+                                    </p>
+                                    <% }) %>
+                        </div>
+
+                        <div class="start">
+                            <div class="btn">
+                                <a class="fancy" onclick="handleRoleClick1(event, '<%= skill1Card.name %>')">
+                                    <span class="top-key"></span>
+                                    <span class="text">Start Learning</span>
+                                    <span class="bottom-key-1"></span>
+                                    <span class="bottom-key-2"></span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="role-icon">
+                                <img src="<%= skill2Card.iconURL %>">
+                            </div>
+                            <h2>
+                                <%= skill2Card.name %>
+                            </h2>
+                        </div>
+                        <div class="idetails">
+                            <div class="d detial1"><img src="/images/wall-clock.png">
+                                <h4>
+                                    <%= skill2Card.months+ " Months" %>
+                                </h4>
+                            </div>
+                            <div class="d detial2"><img src="/images/group.png">
+                                <h4>
+                                    <%= skill2Card.NumUsers %>
+                                </h4>
+                            </div>
+                            <div class="d detial3">
+                                <% if (skill2Card.for==="Advanced" ) { %>
+                                    <img src="/images/advance.png">
+                                    <% } else if (skill2Card.for==="Intermediate 🡺 Advanced" ) { %>
+                                        <img src="/images/intermediate.png">
+                                        <% } else { %>
+                                            <img src="/images/beginner.png">
+                                            <% } %>
+
+
+                                                <h4>
+                                                    <%= skill2Card.for %>
+                                                </h4>
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <h3>Core Technology:</h3>
+                        <div class="core-tech">
+                            <% let techs2=skill2Card.technologies %>
+                                <% techs2.forEach(tech=> { %>
+                                    <p>
+                                        <%=tech %>
+                                    </p>
+                                    <% }) %>
+                        </div>
+
+                        <div class="start">
+                            <div class="btn">
+                                <a class="fancy" onclick="handleRoleClick2(event, '<%= skill2Card.name %>')">
+                                    <span class="top-key"></span>
+                                    <span class="text">Start Learning</span>
+                                    <span class="bottom-key-1"></span>
+                                    <span class="bottom-key-2"></span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="role-icon">
+                                <img src="<%= skill3Card.iconURL %>">
+                            </div>
+                            <h2>
+                                <%= skill3Card.name %>
+                            </h2>
+                        </div>
+                        <div class="idetails">
+                            <div class="d detial1"><img src="/images/wall-clock.png">
+                                <h4>
+                                    <%= skill3Card.months+ " Months" %>
+                                </h4>
+                            </div>
+                            <div class="d detial2"><img src="/images/group.png">
+                                <h4>
+                                    <%= skill3Card.NumUsers %>
+                                </h4>
+                            </div>
+                            <div class="d detial3">
+                                <% if (skill3Card.for==="Advanced" ) { %>
+                                    <img src="/images/advance.png">
+                                    <% } else if (skill3Card.for==="Intermediate 🡺 Advanced" ) { %>
+                                        <img src="/images/intermediate.png">
+                                        <% } else { %>
+                                            <img src="/images/beginner.png">
+                                            <% } %>
+
+
+                                                <h4>
+                                                    <%= skill3Card.for %>
+                                                </h4>
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <h3>Core Technology:</h3>
+                        <div class="core-tech">
+                            <% let techs3=skill3Card.technologies %>
+                                <% techs3.forEach(tech=> { %>
+                                    <p>
+                                        <%=tech %>
+                                    </p>
+                                    <% }) %>
+                        </div>
+
+                        <div class="start">
+                            <div class="btn">
+                                <a class="fancy" onclick="handleRoleClick3(event, '<%= skill3Card.name %>')">
+                                    <span class="top-key"></span>
+                                    <span class="text">Start Learning</span>
+                                    <span class="bottom-key-1"></span>
+                                    <span class="bottom-key-2"></span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
 
 
             <% if (success_msg) { %>
@@ -79,6 +274,22 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
+        function handleRoleClick1(event, roleName) {
+            event.preventDefault();
+            localStorage.setItem("selectedRole", roleName);
+            window.location.href = "/role"; // This will trigger the GET /role route
+        }
+
+                function handleRoleClick2(event, roleName) {
+                        event.preventDefault();
+                        localStorage.setItem("selectedRole", roleName);
+                        window.location.href = "/role"; // This will trigger the GET /role route
+                    }
+                            function handleRoleClick3(event, roleName) {
+                                    event.preventDefault();
+                                    localStorage.setItem("selectedRole", roleName);
+                                    window.location.href = "/role"; // This will trigger the GET /role route
+                                }
     </script>
 </body>
 

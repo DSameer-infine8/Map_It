@@ -134,114 +134,114 @@ app.post("/submit-answers", (req, res) => {
 
 const skillMapping = {
     age: {
-        "18-24": ["Front-End", "UI/UX Designer", "Game Developer"],
-        "25-35": ["Back-End", "Data Science", "Cloud Engineer"],
-        "35+": ["Project Manager", "Cloud Engineer", "Cybersecurity"]
+        "18-24": ["Front-End", "UI/UX Design", "Game Development", "App Development", "Python"],
+        "25-35": ["Back-End", "Data Scientist", "Cloud Engineering", "LLM", "AWS"],
+        "35+": ["Cloud Engineering", "Cyber Security", "LLM", "Block-Chain"]
     },
     education: {
-        "IT": ["Front-End", "Back-End", "Java Full-Stack", "Data Science", "Cloud Engineer", "Cybersecurity"],
-        "Non-IT": ["UI/UX Designer", "Prompt Engineer", "AI Agents"]
+        "IT": ["Front-End", "Back-End", "Java Full-Stack", "Data Scientist", "Cloud Engineering", "Cyber Security", "SQL", "AWS"],
+        "Non-IT": ["UI/UX Design", "Prompt Engineering", "AI Agents", "Game Development"]
     },
     profession: {
-        "Student": ["Front-End", "UI/UX Designer", "Game Developer", "App Developer"],
-        "IT Professional": ["Back-End", "Java Full-Stack", "Cloud Engineer", "Cybersecurity"],
-        "Non-IT Professional": ["Prompt Engineer", "UI/UX Designer", "AI Agents"],
-        "Freelancer": ["UI/UX Designer", "App Developer", "Front-End", "Prompt Engineer"]
+        "Student": ["Front-End", "UI/UX Design", "Game Development", "App Development", "Python"],
+        "IT Professional": ["Back-End", "Java Full-Stack", "Cloud Engineering", "Cyber Security", "LLM", "AWS"],
+        "Non-IT Professional": ["Prompt Engineering", "UI/UX Design", "AI Agents", "SQL"],
+        "Freelancer": ["UI/UX Design", "App Development", "Front-End", "Prompt Engineering", "Python"]
     },
     coding_experience: {
-        "None": ["UI/UX Designer", "Prompt Engineer"],
-        "Beginner": ["Front-End", "Python", "App Developer"],
-        "Intermediate": ["Back-End", "Java Full-Stack", "Cloud Engineer", "SQL"],
-        "Advanced": ["AI Engineering", "MLOps Engineer", "Data Scientist", "Rust Blockchain Developer", "Block-Chain Developer"]
+        "None": ["UI/UX Design", "Prompt Engineering", "Game Development"],
+        "Beginner": ["Front-End", "Python", "App Development", "SQL"],
+        "Intermediate": ["Back-End", "Java Full-Stack", "Cloud Engineering", "SQL", "AWS"],
+        "Advanced": ["AI Engineering", "MLOps", "Data Scientist", "Rust Blockchain Development", "Block-Chain", "LLM"]
     },
     tools: {
-        "HTML/CSS/JS": ["Front-End", "UI/UX Designer", "Game Developer"],
-        "Python": ["Data Scientist", "AI Engineering", "AI Agents", "MLOps Engineer"],
-        "Java": ["Java Full-Stack", "Back-End", "App Developer"],
-        "SQL": ["Data Scientist", "Back-End", "AI Engineering"],
-        "Cloud": ["Cloud Engineer", "MLOps Engineer", "AI Agents"],
-        "UI/UX Tools": ["UI/UX Designer", "Front-End"],
-        "None": ["Prompt Engineer", "UI/UX Designer"]
+        "HTML/CSS/JS": ["Front-End", "UI/UX Design", "Game Development"],
+        "Python": ["Data Scientist", "AI Engineering", "AI Agents", "MLOps", "LLM"],
+        "Java": ["Java Full-Stack", "Back-End", "App Development"],
+        "SQL": ["Data Scientist", "Back-End", "AI Engineering", "SQL"],
+        "Cloud": ["Cloud Engineering", "MLOps", "AI Agents", "LLM", "AWS"],
+        "UI/UX Tools": ["UI/UX Design", "Front-End"],
+        "None": ["Prompt Engineering", "UI/UX Design"]
     },
     project_experience: {
-        "No Projects": ["UI/UX Designer", "Prompt Engineer"],
-        "Mini Projects": ["Front-End", "App Developer", "Python"],
-        "1-2 Projects": ["Back-End", "Java Full-Stack", "Data Scientist"],
-        "Professional Projects": ["Cloud Engineer", "AI Engineering", "Block-Chain Developer", "Rust Blockchain Developer"]
+        "No Projects": ["UI/UX Design", "Prompt Engineering"],
+        "Mini Projects": ["Front-End", "App Development", "Python", "SQL"],
+        "1-2 Projects": ["Back-End", "Java Full-Stack", "Data Scientist", "AWS"],
+        "Professional Projects": ["Cloud Engineering", "AI Engineering", "Block-Chain", "Rust Blockchain Development", "LLM"]
     },
     time_commitment: {
-        "<5": ["Prompt Engineer", "UI/UX Designer"],
-        "5-10": ["Front-End", "Python", "App Developer"],
-        "10+": ["AI Engineering", "Data Scientist", "Cloud Engineer", "MLOps Engineer", "Block-Chain Developer"]
+        "<5": ["Prompt Engineering", "UI/UX Design", "Python"],
+        "5-10": ["Front-End", "Python", "App Development", "SQL"],
+        "10+": ["AI Engineering", "Data Scientist", "Cloud Engineering", "MLOps", "Block-Chain", "LLM", "AWS"]
     },
     learning_style: {
-        "Visual": ["UI/UX Designer", "Front-End", "Game Developer"],
-        "Reading": ["Back-End", "Rust Blockchain Developer", "SQL"],
-        "Hands-on": ["AI Engineering", "Data Scientist", "Cloud Engineer", "App Developer"]
+        "Visual": ["UI/UX Design", "Front-End", "Game Development"],
+        "Reading": ["Back-End", "Rust Blockchain Development", "SQL", "LLM"],
+        "Hands-on": ["AI Engineering", "Data Scientist", "Cloud Engineering", "App Development", "LLM", "AWS"]
     },
     interest_area: {
-        "Web Development": ["Front-End", "Back-End", "Java Full-Stack", "UI/UX Designer"],
-        "Data Science": ["Data Scientist", "AI Engineering", "MLOps Engineer", "AI Agents"],
-        "Mobile Apps": ["App Developer", "Front-End"],
-        "Cloud Computing": ["Cloud Engineer", "MLOps Engineer"],
-        "UI/UX Design": ["UI/UX Designer", "Front-End"]
+        "Web Development": ["Front-End", "Back-End", "Java Full-Stack", "UI/UX Design", "SQL"],
+        "Data Science": ["Data Scientist", "AI Engineering", "MLOps", "AI Agents", "LLM", "Python"],
+        "Mobile Apps": ["App Development", "Front-End", "Java Full-Stack"],
+        "Cloud Computing": ["Cloud Engineering", "MLOps", "LLM", "AWS"],
+        "UI/UX Design": ["UI/UX Design", "Front-End", "Game Development"]
     },
     work_preference: {
-        "Alone": ["Prompt Engineer", "UI/UX Designer", "Python"],
-        "Team": ["Cloud Engineer", "AI Engineering", "Java Full-Stack"],
-        "Both": ["Data Scientist", "Front-End", "App Developer"]
+        "Alone": ["Prompt Engineering", "UI/UX Design", "Python"],
+        "Team": ["Cloud Engineering", "AI Engineering", "Java Full-Stack", "LLM", "AWS"],
+        "Both": ["Data Scientist", "Front-End", "App Development", "LLM"]
     },
     career_goal: {
-        "Job": ["Java Full-Stack", "Back-End", "Cloud Engineer", "AI Engineering"],
-        "Freelancing": ["UI/UX Designer", "Front-End", "Prompt Engineer", "App Developer"],
-        "Startup": ["Block-Chain Developer", "Rust Blockchain Developer", "AI Agents"]
+        "Job": ["Java Full-Stack", "Back-End", "Cloud Engineering", "AI Engineering", "LLM", "AWS"],
+        "Freelancing": ["UI/UX Design", "Front-End", "Prompt Engineering", "App Development"],
+        "Startup": ["Block-Chain", "Rust Blockchain Development", "AI Agents", "LLM", "Python"]
     },
     earning_goal: {
-        "<3 months": ["Front-End", "UI/UX Designer", "Python"],
-        "3-6 months": ["Java Full-Stack", "App Developer", "Cloud Engineer"],
-        "6+ months": ["AI Engineering", "MLOps Engineer", "Data Scientist", "Block-Chain Developer"]
+        "<3 months": ["Front-End", "UI/UX Design", "Python", "SQL"],
+        "3-6 months": ["Java Full-Stack", "App Development", "Cloud Engineering", "AWS"],
+        "6+ months": ["AI Engineering", "MLOps", "Data Scientist", "Block-Chain", "LLM", "Rust Blockchain Development"]
     },
     budget: {
-        "Free": ["UI/UX Designer", "Prompt Engineer", "Python"],
-        "<50": ["Front-End", "Java Full-Stack", "SQL"],
-        ">50": ["AI Engineering", "MLOps Engineer", "Block-Chain Developer", "Rust Blockchain Developer"]
+        "Free": ["UI/UX Design", "Prompt Engineering", "Python", "SQL"],
+        "<50": ["Front-End", "Java Full-Stack", "SQL", "App Development"],
+        ">50": ["AI Engineering", "MLOps", "Block-Chain", "Rust Blockchain Development", "LLM", "AWS"]
     },
     creative_analytical: {
-        "Creative": ["UI/UX Designer", "Front-End", "Game Developer"],
-        "Analytical": ["Data Scientist", "SQL", "AI Engineering"],
-        "Both": ["Java Full-Stack", "App Developer", "AI Agents"]
+        "Creative": ["UI/UX Design", "Front-End", "Game Development", "App Development"],
+        "Analytical": ["Data Scientist", "SQL", "AI Engineering", "LLM", "Cloud Engineering"],
+        "Both": ["Java Full-Stack", "App Development", "AI Agents", "LLM", "AWS"]
     },
     math_skill: {
-        "Low": ["UI/UX Designer", "Prompt Engineer"],
-        "Medium": ["Front-End", "App Developer", "Python"],
-        "High": ["AI Engineering", "Data Scientist", "MLOps Engineer", "Block-Chain Developer"]
+        "Low": ["UI/UX Design", "Prompt Engineering"],
+        "Medium": ["Front-End", "App Development", "Python", "SQL"],
+        "High": ["AI Engineering", "Data Scientist", "MLOps", "Block-Chain", "LLM", "Rust Blockchain Development"]
     },
     problem_solving: {
-        "Yes": ["AI Engineering", "Data Scientist", "Cloud Engineer", "Block-Chain Developer"],
-        "No": ["UI/UX Designer", "Prompt Engineer"],
-        "Sometimes": ["Front-End", "App Developer"]
+        "Yes": ["AI Engineering", "Data Scientist", "Cloud Engineering", "Block-Chain", "LLM", "AWS"],
+        "No": ["UI/UX Design", "Prompt Engineering"],
+        "Sometimes": ["Front-End", "App Development", "Python"]
     },
     industry_preference: {
-        "Tech": ["AI Engineering", "Java Full-Stack", "Cloud Engineer"],
-        "Finance": ["Block-Chain Developer", "Rust Blockchain Developer", "Data Scientist"],
-        "Healthcare": ["AI Agents", "Python", "Data Scientist"],
-        "Education": ["UI/UX Designer", "Front-End", "Prompt Engineer"],
-        "Design": ["UI/UX Designer", "Front-End", "Game Developer"]
+        "Tech": ["AI Engineering", "Java Full-Stack", "Cloud Engineering", "LLM", "AWS"],
+        "Finance": ["Block-Chain", "Rust Blockchain Development", "Data Scientist", "LLM", "SQL"],
+        "Healthcare": ["AI Agents", "Python", "Data Scientist", "LLM", "AWS"],
+        "Education": ["UI/UX Design", "Front-End", "Prompt Engineering", "LLM"],
+        "Design": ["UI/UX Design", "Front-End", "Game Development"]
     },
     challenge_handling: {
-        "Give up quickly": ["UI/UX Designer", "Prompt Engineer"],
-        "Try to solve": ["Front-End", "App Developer", "Python"],
-        "Enjoy solving": ["AI Engineering", "Data Scientist", "Block-Chain Developer"]
+        "Give up quickly": ["UI/UX Design", "Prompt Engineering"],
+        "Try to solve": ["Front-End", "App Development", "Python", "SQL"],
+        "Enjoy solving": ["AI Engineering", "Data Scientist", "Block-Chain", "LLM", "AWS"]
     },
     remote_work: {
-        "Yes": ["Front-End", "UI/UX Designer", "AI Agents", "Python"],
-        "No": ["Cloud Engineer", "Java Full-Stack"],
-        "Doesn't matter": ["AI Engineering", "Data Scientist"]
+        "Yes": ["Front-End", "UI/UX Design", "AI Agents", "Python", "LLM", "AWS"],
+        "No": ["Cloud Engineering", "Java Full-Stack", "Cyber Security"],
+        "Doesn't matter": ["AI Engineering", "Data Scientist", "LLM"]
     },
     salary_priority: {
-        "Very Important": ["AI Engineering", "Cloud Engineer", "Block-Chain Developer"],
-        "Somewhat Important": ["Front-End", "Data Scientist", "Java Full-Stack"],
-        "Not Important": ["UI/UX Designer", "Prompt Engineer"]
+        "Very Important": ["AI Engineering", "Cloud Engineering", "Block-Chain", "LLM", "AWS"],
+        "Somewhat Important": ["Front-End", "Data Scientist", "Java Full-Stack", "SQL"],
+        "Not Important": ["UI/UX Design", "Prompt Engineering", "Game Development"]
     }
 };
 
@@ -252,10 +252,10 @@ function recommendSkills(userAnswers) {
 
     // Initialize all skills with 0
     const allSkills = [
-        "Front-End", "Back-End", "AI Engineering", "Data Scientist", "MLOps Engineer",
-        "LLM Developer", "Prompt Engineer", "Java Full-Stack", "Cybersecurity", "Game Developer",
-        "App Developer", "UI/UX Designer", "Cloud Engineer", "Block-Chain Developer",
-        "Rust Blockchain Developer", "Python", "SQL", "AI Agents", "AWS"
+        "Front-End", "Back-End", "AI Engineering", "Data Scientist", "MLOps",
+        "LLM", "Prompt Engineering", "Java Full-Stack", "Cyber Security", "Game Development",
+        "App Development", "UI/UX Design", "Cloud Engineering", "Block-Chain",
+        "Rust Blockchain Development", "Python", "SQL", "AI Agents", "AWS"
     ];
     allSkills.forEach(skill => scoreMap[skill] = 0);
 
@@ -279,14 +279,21 @@ function recommendSkills(userAnswers) {
 
 
 
+app.get("/recommend/ai", async (req, res) => {
+    try {
+        const recommendedSkills = recommendSkills(userAnswers);
+        console.log(recommendedSkills);
 
-app.get("/recommend/ai", (req, res) => {
-    // Use your recommendSkills function here
-    const recommendedSkills = recommendSkills(userAnswers);
-    res.render("recommendAi.ejs", {recommendedSkills})
+        const skill1Card = await Card.findOne({ skill: recommendedSkills[0] });
+        const skill2Card = await Card.findOne({ skill: recommendedSkills[1] });
+        const skill3Card = await Card.findOne({ skill: recommendedSkills[2] });
+
+        res.render("recommendAi.ejs", { recommendedSkills, skill1Card, skill2Card, skill3Card });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
 });
-
-
 
 
 
