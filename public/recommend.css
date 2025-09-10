@@ -133,9 +133,8 @@ video{
 }
 
 .form-btns{
-    width: 30%;
+    width: 50%;
     display: flex;
-    padding: 10px;
     justify-content: space-around;
     align-items: center;
 }
@@ -155,6 +154,7 @@ video{
 }
 
 input{
+    font-size: 18px;
     padding: 5px;
     margin: 5px;
     border-radius: 8px;
@@ -171,4 +171,35 @@ input{
 
 button{
     padding: 5px;
+}
+
+.signUp,.logIn{
+    font-size: 26px;
+    padding: 5px 50px;
+    border-radius: 1rem 1rem 0rem 0rem;
+    background-color: black;
+    color: #F5F5F5;
+    cursor: pointer;
+}
+
+.logIn{
+    opacity: 0.6;
+}
+
+.signUp:hover{
+    opacity: 0.8;
+}
+
+.logIn:hover {
+    opacity: 0.8;
+}
+
+.signup-container{
+    position: relative;
+    width: 85%;
+}
+
+.signbox1, .signbox2{
+    position: absolute;
+    bottom:-20px;
 }

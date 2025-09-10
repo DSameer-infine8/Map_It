@@ -30,7 +30,8 @@ const cardSchema = new mongoose.Schema({
     months: { type: Number },
     NumUsers: { type: Number },
     technologies: { type: [String] },
-    roadmap: [roadmapSchema]
+    roadmap: [roadmapSchema],
+    clickedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
 });
 
 module.exports = mongoose.model("Card", cardSchema);

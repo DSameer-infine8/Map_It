@@ -303,6 +303,7 @@
         // Search functionality
         const searchInput = document.querySelector("#main .input");
         const cards = document.querySelectorAll(".box");
+        const page2 = document.querySelector(".page2");
 
         searchInput.addEventListener("keyup", function () {
             const query = searchInput.value.toLowerCase();
@@ -314,6 +315,7 @@
                 // Check if query matches role name or technologies
                 if (name.includes(query) || techs.some(t => t.includes(query))) {
                     card.style.display = "block"; // show
+                    page2.style.height = '1100px'
                 } else {
                     card.style.display = "none"; // hide
                 }

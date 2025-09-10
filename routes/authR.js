@@ -53,6 +53,7 @@ router.post('/register', wrapAsync(async (req, res) => {
     req.flash('success_msg', 'User registered. Please verify OTP sent to email.');
 
     // ✅ Redirect so session is saved and next request has pendingEmail
+    req.flash('otp_stage', true);
     res.redirect('/recommend');
 }));
 
@@ -88,8 +89,16 @@ router.post('/verify-otp', wrapAsync(async (req, res) => {
     user.otpExpiry = undefined;
     await user.save();
 
+    // session handling
     delete req.session.pendingEmail;
     req.session.verifiedEmail = email;
+
+    // directly use the same `user` object instead of querying again
+    req.session.userId = user._id.toString();
+
+    console.log("Verified Email:", req.session.verifiedEmail);
+    console.log("User ID:", req.session.userId);
+
     req.flash('success_msg', 'Email verified successfully. You can now log in.');
     setTimeout(() => {
         res.redirect("/recommend/quiz");
@@ -155,6 +164,10 @@ router.post('/login', wrapAsync(async (req, res) => {
 
 
     req.session.user = { id: user._id, email: user.email, name: user.name };
+    // directly use the same `user` object instead of querying again
+    req.session.userId = user._id.toString();
+
+    console.log("User ID:", req.session.userId);
     req.flash('success_msg', 'Login successful');
     req.session.verifiedEmail = email;
     setTimeout(() => {

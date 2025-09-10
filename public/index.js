@@ -1,5 +1,3 @@
-
-
 let role;
 let skill;
 
@@ -311,6 +309,3 @@ function enableGridToggle() {
 }
 
 window.addEventListener('DOMContentLoaded', enableGridToggle);
-
-
-
