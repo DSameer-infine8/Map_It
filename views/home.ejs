@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map_it</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="recommend.css">
     <link rel="stylesheet" href="heroSection.css">
     <link rel="stylesheet" href="main.css">
 </head>
@@ -22,8 +23,8 @@
                     </a>
                 </div>
                 <div class="sign">
-                    <a href="/login" class="login">Log-in</a>
-                    <a href="/signup" class="signup">Sign-Up</a>
+                    <div class="login">Log-in</div>
+                    <div class="signup">Sign-Up</div>
                 </div>
             </nav>
             <div class="svgg">
@@ -98,6 +99,94 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="over-signpage show">
+
+            <img src="/images/close.png" class="close">
+            <div class="form-btns">
+                <button class="signUp">Sign-Up</button>
+                <button class="logIn">Log-In</button>
+            </div>
+            <div class="fill">
+                <div class="signup-container fm">
+                    <div class="signbox1 <%= otp_stage ? " show" : "" %>">
+                        <form action="/auth/register" method="POST" class="signup-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+
+                            <div class="form-group" style="position: relative;">
+                                <label for="password">Password</label><br>
+                                <input type="password" id="password" name="password" placeholder="Enter your password"
+                                    required>
+                                <span id="togglePassword"
+                                    style="position: absolute; right: 10px; top: 35px; cursor: pointer;">
+                                    👁️
+                                </span>
+                            </div>
+
+                            <button type="submit">Send OTP</button>
+                        </form>
+                    </div>
+
+
+
+
+                    <!-- Verify OTP Form -->
+                    <div class="signbox2 <%= otp_stage ? "" : " show" %>">
+                        <div class="verify-container">
+                            <h2>Verify OTP</h2>
+                            <form action="/auth/verify-otp" method="POST" class="verify-form">
+
+                                <div class="form-group">
+                                    <label for="otp">OTP</label>
+                                    <input type="text" id="otp" name="otp"
+                                        placeholder="Enter the OTP sent to your email" required>
+                                </div>
+
+                                <button class="submit" type="submit">Verify Email & Sign-Up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="logIn-container show">
+                    <h2>Log-In</h2>
+                    <form action="/auth/login" method="POST" class="login-form">
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password"
+                                required>
+                        </div>
+
+                        <button class="submit" type="submit">Log-In</button>
+                    </form>
+                </div>
+            </div>
+
+            <% if (success_msg) { %>
+                <p class="success">
+                    <%= success_msg %>
+                </p>
+                <% } %>
+                    <% if (error_msg) { %>
+                        <p class="error">
+                            <%= error_msg %>
+                        </p>
+                        <% } %>
         </div>
     </div>
     <div class="page2">
@@ -253,6 +342,60 @@
         }
 
 
+        const body = document.querySelector("body");
+
+        //signUp Btn & OTP display function
+
+        const signsub = document.querySelector(".signup-form");
+        const signbox1 = document.querySelector(".signbox1");
+        const signbox2 = document.querySelector(".signbox2");
+
+        signsub.addEventListener("submit", (e) => {
+            signbox2.classList.remove("show");
+            signbox1.classList.add("show");
+
+        });
+
+
+
+
+
+        //SignUp & logIn btn funtion
+        const signupBtn = document.querySelector(".signUp");
+        const loginBtn = document.querySelector(".logIn");
+        const signupContain = document.querySelector(".signup-container");
+        const loginContain = document.querySelector(".logIn-container")
+
+        signupBtn.addEventListener("click", () => {
+            loginContain.classList.add("show");
+            loginBtn.style.opacity = '0.6'
+            signupBtn.style.opacity = '1'
+            signupContain.classList.remove("show");
+        });
+        loginBtn.addEventListener("click", () => {
+            loginContain.classList.remove("show");
+            loginBtn.style.opacity = '1'
+            signupBtn.style.opacity = '0.6'
+            signupContain.classList.add("show");
+        })
+
+
+        //Password Toggle btn
+
+
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", function () {
+            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+            passwordInput.setAttribute("type", type);
+
+            // Change icon when toggled
+            this.textContent = type === "password" ? "👁️" : "🙈";
+
+        });
+
+
 
 
         const radios = document.querySelectorAll('.radio-inputs input[type="radio"]');
@@ -280,6 +423,26 @@
         });
 
 
+        //signUp & logIn Btn Submit 
+
+        const verified = document.querySelector(".verify-form");
+        const logined = document.querySelector(".login-form");
+        const signPage = document.querySelector(".over-signpage");
+
+
+        logined.addEventListener("submit", (e) => {
+            e.preventDefault(); // stop form from reloading page immediately
+            logined.submit();
+            signPage.classList.add("show");
+        });
+
+        verified.addEventListener("submit", (e) => {
+            e.preventDefault(); // stop form from reloading page immediately
+            verified.submit();
+            signPage.classList.add("show");
+        });
+
+
 
 
 
@@ -298,7 +461,13 @@
             }
         });
 
+        //Close btn for SignUp page
+        const closeSignBtn = document.querySelector(".close");
 
+        closeSignBtn.addEventListener("click", () => {
+            signPage.classList.add("show");
+            body.classList.remove("scrollDisplay");
+        })
 
         // Search functionality
         const searchInput = document.querySelector("#main .input");
@@ -320,6 +489,36 @@
                     card.style.display = "none"; // hide
                 }
             });
+        });
+
+        //main page signUp & logIn btn function
+        const signBtn = document.querySelector(".signup");
+        const logBtn = document.querySelector(".login");
+
+
+        signBtn.addEventListener("click", () => {
+            signPage.classList.remove("show");
+            body.classList.add("scrollDisplay");
+
+
+            // Trigger inner signup button behavior
+            loginContain.classList.add("show");
+            loginBtn.style.opacity = '0.6';
+            signupBtn.style.opacity = '1';
+            signupContain.classList.remove("show");
+        });
+
+        logBtn.addEventListener("click", () => {
+            signPage.classList.remove("show");
+            body.classList.add("scrollDisplay");
+
+
+
+            // Trigger inner login button behavior
+            loginContain.classList.remove("show");
+            loginBtn.style.opacity = '1';
+            signupBtn.style.opacity = '0.6';
+            signupContain.classList.add("show");
         });
 
         //SVG Starts

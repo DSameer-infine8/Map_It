@@ -113,13 +113,14 @@ app.get("/", (req, res) => {
 
 app.get('/home', (req, res) => {
     const type = req.query.type || 'role';
+    const otp_stage = req.flash("otp_stage")[0] || false;
 
     let cards;
     if (type === 'role') cards = roleBasedCards;
     else if (type === 'skill') cards = skillBasedCards;
     else cards = projectBasedCards;
 
-    res.render('home.ejs', { cards, selectedType: type });
+    res.render('home.ejs', { cards, selectedType: type, otp_stage });
 });
 // 👇 Serve index.html for the /role page
 app.get("/role", (req, res) => {
