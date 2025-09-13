@@ -261,6 +261,14 @@
                         </p>
                         <% } %>
 
+
+                            <div class="backHome">
+                                <a href="/home">
+                                    <img src="/images/lang/Home_icon_orange.png" alt="Home">
+                                    <h3>Back Home</h3>
+                                </a>
+                            </div>
+
         </div>
 
     </div>
@@ -280,16 +288,16 @@
             window.location.href = "/role"; // This will trigger the GET /role route
         }
 
-                function handleRoleClick2(event, roleName) {
-                        event.preventDefault();
-                        localStorage.setItem("selectedRole", roleName);
-                        window.location.href = "/role"; // This will trigger the GET /role route
-                    }
-                            function handleRoleClick3(event, roleName) {
-                                    event.preventDefault();
-                                    localStorage.setItem("selectedRole", roleName);
-                                    window.location.href = "/role"; // This will trigger the GET /role route
-                                }
+        function handleRoleClick2(event, roleName) {
+            event.preventDefault();
+            localStorage.setItem("selectedRole", roleName);
+            window.location.href = "/role"; // This will trigger the GET /role route
+        }
+        function handleRoleClick3(event, roleName) {
+            event.preventDefault();
+            localStorage.setItem("selectedRole", roleName);
+            window.location.href = "/role"; // This will trigger the GET /role route
+        }
     </script>
 </body>
 

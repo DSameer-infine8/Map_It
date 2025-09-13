@@ -157,7 +157,7 @@
 
 .border {
     max-height: 59px;
-    max-width: 605px;
+    max-width: 600px;
     border-radius: 11px;
     filter: blur(0.5px);
 }
@@ -324,6 +324,7 @@
 }
 
 #filter-icon {
+    margin-top: 10px;
     position: absolute;
     top: 8px;
     right: 8px;
@@ -345,6 +346,7 @@
 }
 
 .filterBorder {
+    margin-top: 10pxs;
     height: 42px;
     width: 40px;
     position: absolute;
@@ -381,6 +383,7 @@
 }
 
 #search-icon {
+    margin-top: 10px;
     position: absolute;
     left: 20px;
     top: 15px;
@@ -644,4 +647,11 @@ h4{
 
 h3{
     margin-left: 12px;
+}
+
+
+.okk{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

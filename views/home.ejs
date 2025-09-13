@@ -32,6 +32,20 @@
                     <path d="M 20 10 Q 300 10 1500 10" stroke="black" fill="transparent" />
                 </svg>
             </div>
+
+
+            <div>
+                <% if (success_msg) { %>
+                    <p class="success">
+                        <%= success_msg %>
+                    </p>
+                    <% } %>
+                        <% if (error_msg) { %>
+                            <p class="error">
+                                <%= error_msg %>
+                            </p>
+                            <% } %>
+            </div>
             <div class="para">
                 <h1>Your Journey To</h1>
                 <h1 class="sub-title">Expert Developer</h1>
@@ -111,7 +125,7 @@
             <div class="fill">
                 <div class="signup-container fm">
                     <div class="signbox1 <%= otp_stage ? " show" : "" %>">
-                        <form action="/auth/register" method="POST" class="signup-form">
+                        <form action="/auth/home/register" method="POST" class="signup-form">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -143,7 +157,7 @@
                     <div class="signbox2 <%= otp_stage ? "" : " show" %>">
                         <div class="verify-container">
                             <h2>Verify OTP</h2>
-                            <form action="/auth/verify-otp" method="POST" class="verify-form">
+                            <form action="/auth/home/verify-otp" method="POST" class="verify-form">
 
                                 <div class="form-group">
                                     <label for="otp">OTP</label>
@@ -159,7 +173,7 @@
 
                 <div class="logIn-container show">
                     <h2>Log-In</h2>
-                    <form action="/auth/login" method="POST" class="login-form">
+                    <form action="/auth/home/login" method="POST" class="login-form">
 
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -203,7 +217,7 @@
             <div class="border"></div>
 
             <div id="main">
-                <input placeholder="Search..." type="text" name="text" class="input" />
+                <input placeholder="Search..." type="text" name="text" class="input okk" />
                 <div id="input-mask"></div>
                 <div id="pink-mask"></div>
                 <div class="filterBorder"></div>
@@ -241,6 +255,7 @@
                 projects,
                 we've got you covered. </p><br>
             <p>Choose your path and start building!</p>
+
 
             <div class="radio-inputs">
                 <label class="radio">
@@ -310,12 +325,21 @@
 
                     <div class="start">
                         <div class="btn">
-                            <a class="fancy" onclick="handleRoleClick(event, '<%= role.name %>')">
-                                <span class="top-key"></span>
-                                <span class="text">Start Learning</span>
-                                <span class="bottom-key-1"></span>
-                                <span class="bottom-key-2"></span>
-                            </a>
+                            <% if (!userId) { %>
+                                <a class="fancy" onclick="openSignupModal()">
+                                    <span class="top-key"></span>
+                                    <span class="text">Start Learning</span>
+                                    <span class="bottom-key-1"></span>
+                                    <span class="bottom-key-2"></span>
+                                </a>
+                                <% } else { %>
+                                    <a class="fancy" onclick="handleRoleClick(event, '<%= role.name %>')">
+                                        <span class="top-key"></span>
+                                        <span class="text">Start Learning</span>
+                                        <span class="bottom-key-1"></span>
+                                        <span class="bottom-key-2"></span>
+                                    </a>
+                                    <% } %>
                         </div>
 
                     </div>
@@ -340,7 +364,6 @@
             localStorage.setItem("selectedRole", roleName);
             window.location.href = "/role"; // This will trigger the GET /role route
         }
-
 
         const body = document.querySelector("body");
 
@@ -444,7 +467,31 @@
 
 
 
+        function openSignupModal() {
+            signPage.classList.remove("show");
+            disableScroll();
 
+            // Same behavior as clicking the top signup button
+            loginContain.classList.add("show");
+            loginBtn.style.opacity = '0.6';
+            signupBtn.style.opacity = '1';
+            signupContain.classList.remove("show");
+        }
+
+
+        function disableScroll() {
+            // Scroll to top first
+            window.scrollTo(0, 0);
+
+            // Disable scroll after reaching top
+            document.body.style.overflow = "hidden";
+        }
+
+        function enableScroll() {
+            // Enable scroll again
+            document.body.style.overflowX = "hidden";
+            document.body.style.overflowY = "auto";
+        }
 
         window.addEventListener("DOMContentLoaded", () => {
             // Check flag in localStorage
@@ -467,6 +514,7 @@
         closeSignBtn.addEventListener("click", () => {
             signPage.classList.add("show");
             body.classList.remove("scrollDisplay");
+            enableScroll();
         })
 
         // Search functionality

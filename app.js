@@ -114,16 +114,18 @@ app.get("/", (req, res) => {
 app.get('/home', (req, res) => {
     const type = req.query.type || 'role';
     const otp_stage = req.flash("otp_stage")[0] || false;
+    userId = req.session.userId;
 
     let cards;
     if (type === 'role') cards = roleBasedCards;
     else if (type === 'skill') cards = skillBasedCards;
     else cards = projectBasedCards;
 
-    res.render('home.ejs', { cards, selectedType: type, otp_stage });
+    res.render('home.ejs', { cards, selectedType: type, otp_stage, userId });
 });
 // 👇 Serve index.html for the /role page
 app.get("/role", (req, res) => {
+
 
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
@@ -138,7 +140,7 @@ app.post("/api/role", async (req, res) => {
         if (!role) return res.status(404).json({ error: "Card not found" });
 
         const cardId = role._id;  // ✅ correct way
-        const userId = req.session.userId;
+        userId = req.session.userId;
 
         if (!userId) return res.status(401).json({ error: "User not logged in" });
 

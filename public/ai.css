@@ -214,3 +214,30 @@ h4 {
     bottom: 10px;
     position: absolute;
 }
+
+
+
+.backHome img{
+    height: 60px;
+    filter: none;
+}
+
+.backHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        border: 3px solid white;
+            padding: 5px;
+            border-radius: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+}
+
+.backHome a{
+    text-decoration: none;
+}
+
+.backHome h3{
+    color: #FFFFFF;
+    text-decoration: none;
+}
