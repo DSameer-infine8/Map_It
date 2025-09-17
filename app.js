@@ -144,10 +144,6 @@ app.post("/api/role", async (req, res) => {
 
         if (!userId) return res.status(401).json({ error: "User not logged in" });
 
-        console.log("Session User ID:", userId);
-
-        const n = await User.findById(userId);
-        console.log("User fetched:", n?.email);
 
         // call your handler
         const updatedCard = await handleCardClick(cardId, userId);
@@ -159,6 +155,11 @@ app.post("/api/role", async (req, res) => {
     }
 });
 
+
+app.get("/register", (req, res) => {
+    const otp_stage = req.flash("otp_stage")[0] || false;
+    res.render("register", {otp_stage});
+});
 
 
 

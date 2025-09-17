@@ -480,3 +480,21 @@ p{
 .yes h2{
     font-size: 24px;
 }
+
+.guide{
+    display: flex;
+    position: absolute;
+    top:125px;
+    left:33%;
+}
+
+.guide h1{
+    color: #F5F5F5;
+        font-family: "Special Gothic Expanded One", sans-serif;
+        font-weight: 50;
+        top: 175px;
+}
+
+.guide img{
+    height: 70px;
+}

@@ -44,11 +44,44 @@ router.post('/register', wrapAsync(async (req, res) => {
     await user.save();
 
     await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+        from: `"Map_it" <${process.env.EMAIL_USER}>`,  // sender name + email
         to: email,
-        subject: 'OTP Verification',
-        text: `Your OTP is: ${otp}`
+        subject: 'OTP Verification - Map_it',
+        html: `
+        <div style="font-family: Arial, sans-serif; max-width: 500px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px; background-color: #fafafa;">
+            
+            <!-- Logo -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="https://drive.google.com/file/d/1H1Bxo7SmFbv5reV_RxSeyzFhb3id7bZs/view?usp=sharing" alt="Map_it Logo" width="80" style="border-radius: 50%;"/>
+            </div>
+            
+            <!-- Title -->
+            <h2 style="text-align: center; color: #333;">OTP Verification</h2>
+            
+            <!-- Message -->
+            <p style="font-size: 16px; color: #555;">
+                Hello 👋,<br><br>
+                Thank you for signing up with <b>Map_it</b>! <br>
+                Please use the following One-Time Password (OTP) to verify your account:
+            </p>
+            
+            <!-- OTP Box -->
+            <div style="text-align: center; margin: 20px 0;">
+                <span style="display: inline-block; font-size: 24px; font-weight: bold; letter-spacing: 4px; padding: 10px 20px; background-color: #ff7b00; color: white; border-radius: 8px;">
+                    ${otp}
+                </span>
+            </div>
+            
+            
+            <!-- Footer -->
+            <p style="font-size: 12px; color: #999; text-align: center; margin-top: 30px;">
+                If you didn’t request this, please ignore this email. <br>
+                © ${new Date().getFullYear()} Map_it. All rights reserved.
+            </p>
+        </div>
+    `
     });
+
 
     req.flash('success_msg', 'User registered. Please verify OTP sent to email.');
 
@@ -65,8 +98,8 @@ router.post('/home/register', wrapAsync(async (req, res) => {
     let user = await User.findOne({ email });
 
     if (user) {
-        req.flash('error_msg', 'User already exists');
-        return res.redirect('/recommend');
+        req.flash('error_msg', 'User already exists.Try to Log-In');
+        return res.redirect('/register');
     }
 
     const otp = generateOTP();
@@ -76,17 +109,49 @@ router.post('/home/register', wrapAsync(async (req, res) => {
     await user.save();
 
     await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+        from: `"Map_it" <${process.env.EMAIL_USER}>`,  // sender name + email
         to: email,
-        subject: 'OTP Verification',
-        text: `Your OTP is: ${otp}`
+        subject: 'OTP Verification - Map_it',
+        html: `
+        <div style="font-family: Arial, sans-serif; max-width: 500px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px; background-color: #fafafa;">
+            
+            <!-- Logo -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="/images/advance.png" alt="Map_it Logo" width="80" style="border-radius: 50%;"/>
+            </div>
+            
+            <!-- Title -->
+            <h2 style="text-align: center; color: #333;">OTP Verification</h2>
+            
+            <!-- Message -->
+            <p style="font-size: 16px; color: #555;">
+                Hello 👋,<br><br>
+                Thank you for signing up with <b>Map_it</b>! <br>
+                Please use the following One-Time Password (OTP) to verify your account:
+            </p>
+            
+            <!-- OTP Box -->
+            <div style="text-align: center; margin: 20px 0;">
+                <span style="display: inline-block; font-size: 24px; font-weight: bold; letter-spacing: 4px; padding: 10px 20px; background-color: #ff7b00; color: white; border-radius: 8px;">
+                    ${otp}
+                </span>
+            </div>
+            
+            <!-- Footer -->
+            <p style="font-size: 12px; color: #999; text-align: center; margin-top: 30px;">
+                If you didn’t request this, please ignore this email. <br>
+                © ${new Date().getFullYear()} Map_it. All rights reserved.
+            </p>
+        </div>
+    `
     });
+
 
     req.flash('success_msg', 'User registered. Please verify OTP sent to email.');
 
     // ✅ Redirect so session is saved and next request has pendingEmail
     req.flash('otp_stage', true);
-    res.redirect('/home');
+    res.redirect('/register');
 }));
 
 
@@ -147,21 +212,21 @@ router.post('/home/verify-otp', wrapAsync(async (req, res) => {
 
     if (!email) {
         req.flash('error_msg', 'No pending verification.');
-        return res.redirect('/recommend');
+        return res.redirect('/home');
     }
 
     const user = await User.findOne({ email });
     if (!user) {
         req.flash('error_msg', 'User not found');
-        return res.redirect('/recommend');
+        return res.redirect('/home');
     }
     if (user.isVerified) {
-        req.flash('error_msg', 'User already verified');
+        req.flash('error_msg', 'User already verified.Try to Log-in');
         return res.send('Successfully registered');
     }
     if (user.otp !== otp || user.otpExpiry < new Date()) {
         req.flash('error_msg', 'Invalid or expired OTP');
-        return res.redirect('/recommend');
+        return res.redirect('/home');
     }
 
     user.isVerified = true;
@@ -176,10 +241,8 @@ router.post('/home/verify-otp', wrapAsync(async (req, res) => {
     // directly use the same `user` object instead of querying again
     req.session.userId = user._id.toString();
 
-    console.log("Verified Email:", req.session.verifiedEmail);
-    console.log("User ID:", req.session.userId);
 
-    req.flash('success_msg', 'Email verified successfully. You can now log in.');
+    req.flash('success_msg', 'Email verified successfully & The User Registered.');
     res.redirect("/home");
 }));
 
@@ -209,14 +272,47 @@ router.post('/resend-otp', wrapAsync(async (req, res) => {
     await user.save();
 
     await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: user.email,
-        subject: 'Resend OTP Verification',
-        text: `Your new OTP is: ${otp}`
+        from: `"Map_it" <${process.env.EMAIL_USER}>`,  // sender name + email
+        to: email,
+        subject: 'Resend OTP Verification - Map_it',
+        html: `
+        <div style="font-family: Arial, sans-serif; max-width: 500px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px; background-color: #fafafa;">
+            
+            <!-- Logo -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="/images/advance.png" alt="Map_it Logo" width="80" style="border-radius: 50%;"/>
+            </div>
+            
+            <!-- Title -->
+            <h2 style="text-align: center; color: #333;">OTP Verification</h2>
+            
+            <!-- Message -->
+            <p style="font-size: 16px; color: #555;">
+                Hello 👋,<br><br>
+                Thank you for signing up with <b>Map_it</b>! <br>
+                Please use the following New One-Time Password (OTP) to verify your account:
+            </p>
+            
+            <!-- OTP Box -->
+            <div style="text-align: center; margin: 20px 0;">
+                <span style="display: inline-block; font-size: 24px; font-weight: bold; letter-spacing: 4px; padding: 10px 20px; background-color: #ff7b00; color: white; border-radius: 8px;">
+                    ${otp}
+                </span>
+            </div>
+            
+            <!-- Footer -->
+            <p style="font-size: 12px; color: #999; text-align: center; margin-top: 30px;">
+                If you didn’t request this, please ignore this email. <br>
+                © ${new Date().getFullYear()} Map_it. All rights reserved.
+            </p>
+        </div>
+    `
     });
 
     req.flash('success_msg', 'OTP resent successfully. Please check your email.');
-    res.redirect('/verify');
+    // ✅ Redirect so session is saved and next request has pendingEmail
+    req.flash('otp_stage', true);
+    res.redirect('/register');
 }));
 
 router.post('/login', wrapAsync(async (req, res) => {

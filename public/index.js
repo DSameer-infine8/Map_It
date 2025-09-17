@@ -1,6 +1,9 @@
 let role;
 let skill;
 
+const tl = gsap.timeline();
+
+
 async function fetchRole() {
     const roleName = localStorage.getItem("selectedRole");
     if (!roleName) {
@@ -119,7 +122,8 @@ const addEle = () => {
             let div = document.createElement("div");
             div.classList.add("grid-item");
             if (i === 1) {
-                div.classList.add("left");
+                div.classList.add(`left`);
+                div.classList.add(`fnf${i}`);
             } else if (i === 2) {
                 div.classList.add("middle");
             } else {
@@ -308,4 +312,52 @@ function enableGridToggle() {
     });
 }
 
+
+
+
 window.addEventListener('DOMContentLoaded', enableGridToggle);
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const first = document.querySelectorAll(".fnf1")[0]; // simpler than querySelectorAll()[0]
+
+    first.innerHTML = "<h3>Click it</h3>";
+});
+
+
+
+// tl.from(".guide", {
+//     y: -50,
+//     opacity: 0,
+//     duration: 1.5,
+//     scrollTrigger: {
+//         trigger: ".guide",
+//         scroller: "body",
+//         start: "top 70%",
+//         end: "bottom 70%",
+//         scrub: 1,
+//         markers: true
+//     }
+// });
+
+
+gsap.timeline({
+    scrollTrigger: {
+        trigger: ".guide",
+        scroller: "body",
+        start: "top 70%",
+        end: "+=350",
+        scrub: true,
+    }
+})
+    .from(".guide", {
+        y: -20,
+        opacity: 0,
+        duration: 1.5
+    })
+    .to(".guide", {
+        y: 0,
+        opacity: 0,
+        duration: 1
+    });
