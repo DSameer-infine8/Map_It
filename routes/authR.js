@@ -4,7 +4,6 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const wrapAsync = require("../middleware/asyncWrap");
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
 
 
 
@@ -125,7 +124,7 @@ router.post('/home/register', wrapAsync(async (req, res) => {
             
             <!-- Message -->
             <p style="font-size: 16px; color: #555;">
-                Hello 👋,<br><br>
+                👋 Hello,${user.name}...!<br><br>
                 Thank you for signing up with <b>Map_it</b>! <br>
                 Please use the following One-Time Password (OTP) to verify your account:
             </p>
@@ -342,7 +341,6 @@ router.post('/login', wrapAsync(async (req, res) => {
     // directly use the same `user` object instead of querying again
     req.session.userId = user._id.toString();
 
-    console.log("User ID:", req.session.userId);
     req.flash('success_msg', 'Login successful');
     req.session.verifiedEmail = email;
     setTimeout(() => {
@@ -379,21 +377,22 @@ router.post('/home/login', wrapAsync(async (req, res) => {
     // directly use the same `user` object instead of querying again
     req.session.userId = user._id.toString();
 
-    console.log("User ID:", req.session.userId);
     req.flash('success_msg', 'Login successful');
     req.session.verifiedEmail = email;
     res.redirect("/home");
 }));
 
 router.post('/logout', (req, res) => {
+    // Save flash messages before destroying session
+    req.flash('success_msg', 'Logged out successfully');
+
     req.session.destroy(err => {
         if (err) {
             req.flash('error_msg', 'Error logging out');
-            return res.redirect('/dashboard');
+            return res.redirect('/home');
         }
         res.clearCookie('connect.sid'); // clear session cookie
-        req.flash('success_msg', 'Logged out successfully');
-        res.redirect('/login');
+        res.redirect('/home');
     });
 });
 

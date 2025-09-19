@@ -2,7 +2,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const port = process.env.PORT;
-const mongoURL = process.env.mongoURL;
+//const mongoURL = process.env.mongoURL;
+const db_url = process.env.ATLAS_DB_URL;
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -10,6 +11,7 @@ const Card = require("./models/roadmap");
 const path = require("path");
 const methodOverride = require("method-override");
 const session = require('express-session');
+const MongoStore = require("connect-mongo");
 const flash = require('connect-flash');
 const app = express();
 
@@ -20,6 +22,40 @@ app.use(express.static(path.join(__dirname, "public"), { index: false }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // 👈 Needed to parse JSON from fetch()
 app.use(methodOverride("_method"));
+
+
+
+const store = MongoStore.create({
+    mongoUrl: db_url,
+    crypto: {
+        secret: 'mysupersecretkey'
+    },
+    touchAfter: 24 * 3600, //passed in sec not milli sec
+});
+
+store.on("error", () => {
+    console.log("error in Mongo Session Store", err);
+})
+
+
+
+const sessionOptions = {
+    store,
+    secret: 'mysupersecretkey',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+    }
+}
+
+
+app.use(session(sessionOptions));
+
+app.use(flash());
+
 
 const wrapAsync = require("./middleware/asyncWrap");
 const User = require('./models/User');
@@ -38,21 +74,13 @@ const dis = async () => {
 
 // MongoDB Connection
 const main = async () => {
-    await mongoose.connect(mongoURL);
+    await mongoose.connect(db_url);
     await dis();
 }
 main().then(() => { console.log("Connection Successful") }).catch((err) => { console.log(err) });
 
 
 
-
-app.use(session({
-    secret: 'mysupersecretkey',
-    resave: false,
-    saveUninitialized: true
-}));
-
-app.use(flash());
 
 
 
@@ -62,12 +90,21 @@ app.use((req, res, next) => {
     next();
 });
 
-
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    req.flash('error_msg', 'Something went wrong on our side.');
-    res.redirect('back');
+
+    // Flash only if available
+    if (req.flash) {
+        req.flash('error_msg', 'Something went wrong on our side.');
+    }
+
+    // Render an error page instead of redirecting back
+    res.status(500).render('error', {
+        error_msg: 'Something went wrong on our side.',
+        error: err.message || 'Unknown error'
+    });
 });
+
 
 const authRoutes = require('./routes/authR');
 
@@ -158,7 +195,7 @@ app.post("/api/role", async (req, res) => {
 
 app.get("/register", (req, res) => {
     const otp_stage = req.flash("otp_stage")[0] || false;
-    res.render("register", {otp_stage});
+    res.render("register", { otp_stage });
 });
 
 
@@ -185,8 +222,8 @@ app.post("/submit-answers", (req, res) => {
     // req.body contains all answers
     userAnswers = req.body;
 
-    console.log("User Answers:", userAnswers);
-    // Example: { Q1: '18-24', Q2: 'IT/CS', Q3: 'Student' }
+    // console.log("User Answers:", userAnswers);
+    //  Example: { Q1: '18-24', Q2: 'IT/CS', Q3: 'Student' }
 
     // Pass the answers to another route
     res.redirect("/recommend/ai");
@@ -344,7 +381,6 @@ function recommendSkills(userAnswers) {
 app.get("/recommend/ai", async (req, res) => {
     try {
         const recommendedSkills = recommendSkills(userAnswers);
-        console.log(recommendedSkills);
 
         const skill1Card = await Card.findOne({ skill: recommendedSkills[0] });
         const skill2Card = await Card.findOne({ skill: recommendedSkills[1] });

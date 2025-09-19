@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map_it</title>
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204472/favicon_ntlvzj.png">
     <link rel="stylesheet" href="recommend.css">
     <link rel="stylesheet" href="heroSection.css">
     <link rel="stylesheet" href="main.css">
@@ -18,7 +19,7 @@
             <nav>
                 <div class="logobox">
                     <a href="/home">
-                        <img src="/images/advance.png">
+                        <img src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204447/advance_yofya6.png">
                         <h1 class="logo">Map_it</h1>
                     </a>
                 </div>
@@ -27,7 +28,11 @@
                     <a href="/register" class="signup">Sign-Up</a>
                 </div>
                 <% if (userId) { %>
-                    <div class="logg"></div>
+                    <div class="logg">
+                        <form action="/auth/logout" method="POST">
+                            <button class="logout" type="submit">Log-Out</button>
+                        </form>
+                    </div>
                     <% } %>
 
             </nav>
@@ -96,21 +101,21 @@
             <div class="threeicons">
                 <div class="i icon1">
                     <div class="iconImg">
-                        <img src="/images/code.png">
+                        <img src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204465/code_iezlfy.png">
                     </div>
                     <h1>50+</h1>
                     <h3>Learning Path</h3>
                 </div>
                 <div class="i icon2">
                     <div class="iconImg">
-                        <img src="/images/roadmap.png">
+                        <img src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204495/roadmap_f3qriy.png">
                     </div>
                     <h1>100+</h1>
                     <h3>Skills Covered</h3>
                 </div>
                 <div class="i icon3">
                     <div class="iconImg">
-                        <img src="/images/group.png">
+                        <img src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204479/group_obnpq0.png">
                     </div>
                     <h1>1000+</h1>
                     <h3>Developers</h3>
@@ -202,23 +207,23 @@
                         </h2>
                     </div>
                     <div class="idetails">
-                        <div class="d detial1"><img src="/images/wall-clock.png">
+                        <div class="d detial1"><img src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204504/wall-clock_ryep1n.png">
                             <h4>
                                 <%= role.months+ " Months" %>
                             </h4>
                         </div>
-                        <div class="d detial2"><img src="/images/group.png">
+                        <div class="d detial2"><img src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204479/group_obnpq0.png">
                             <h4>
                                 <%= role.NumUsers %>
                             </h4>
                         </div>
                         <div class="d detial3">
                             <% if (role.for==="Advanced" ) { %>
-                                <img src="/images/advance.png">
+                                <img src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204447/advance_yofya6.png">
                                 <% } else if (role.for==="Intermediate 🡺 Advanced" ) { %>
-                                    <img src="/images/intermediate.png">
+                                    <img src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204483/intermediate_a5wev5.png">
                                     <% } else { %>
-                                        <img src="/images/beginner.png">
+                                        <img src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204454/beginner_lxpzqa.png">
                                         <% } %>
 
 

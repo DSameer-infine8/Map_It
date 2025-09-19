@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map_it:Error</title>
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204472/favicon_ntlvzj.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .error-box {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #dc3545;
+        }
+
+        a {
+            margin-top: 1rem;
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            background: #007bff;
+            color: white;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-box">
+        <h1>⚠️ Oops!</h1>
+        <p>
+            <%= error_msg %>
+        </p>
+        <small>Error details: <%= error %></small>
+        <br>
+        <a href="/home">Go Home</a>
+    </div>
+</body>
+
+</html>
