@@ -145,7 +145,7 @@ let userId;
 
 // Routes
 app.get("/", (req, res) => {
-    res.send("Welcome");
+    res.redirect("home");
 });
 
 app.get('/home', (req, res) => {
