@@ -59,17 +59,17 @@ router.post('/register', wrapAsync(async (req, res) => {
             
             <!-- Message -->
             <p style="font-size: 16px; color: #555;">
-                Hello 👋,<br><br>
+                👋 Hello,${user.name}...!<br><br>
                 Thank you for signing up with <b>Map_it</b>! <br>
                 Please use the following One-Time Password (OTP) to verify your account:
             </p>
             
             <!-- OTP Box -->
-            <div style="text-align: center; margin: 20px 0;">
-                <span style="display: inline-block; font-size: 24px; font-weight: bold; letter-spacing: 4px; padding: 10px 20px; background-color: #ff7b00; color: white; border-radius: 8px;">
-                    ${otp}
-                </span>
-            </div>
+<div style="text-align: center; margin: 20px 0;">
+    <span style="display: inline-block; font-size: 24px; font-weight: bold; letter-spacing: 4px; padding: 10px 20px; background-color: #ff7b00; color: white; border-radius: 8px;">
+        ${otp.trim()}
+    </span>
+</div>
             
             
             <!-- Footer -->
@@ -102,6 +102,7 @@ router.post('/home/register', wrapAsync(async (req, res) => {
     }
 
     const otp = generateOTP();
+    const cleanOTP = otp.toString().trim();
     const otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
 
     user = new User({ name, email, password, otp, otpExpiry });
@@ -132,7 +133,7 @@ router.post('/home/register', wrapAsync(async (req, res) => {
             <!-- OTP Box -->
             <div style="text-align: center; margin: 20px 0;">
                 <span style="display: inline-block; font-size: 24px; font-weight: bold; letter-spacing: 4px; padding: 10px 20px; background-color: #ff7b00; color: white; border-radius: 8px;">
-                    ${otp}
+                    ${cleanOTP}
                 </span>
             </div>
             

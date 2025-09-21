@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map_it</title>
-        <link rel="icon" type="image/png"
-            href="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204472/favicon_ntlvzj.png">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204472/favicon_ntlvzj.png">
     <link rel="stylesheet" href="recommend.css">
+    <link rel="stylesheet" href="heroSection.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
@@ -15,7 +17,8 @@
         <div class="left">
             <video class="bg-video" autoplay muted loop playsinline disablePictureInPicture
                 oncontextmenu="return false;">
-                <source src="https://res.cloudinary.com/dr1ikaabc/video/upload/v1758208830/Wavy_ld8epb.mp4" type="video/mp4">
+                <source src="https://res.cloudinary.com/dr1ikaabc/video/upload/v1758208830/Wavy_ld8epb.mp4"
+                    type="video/mp4">
                 <!-- optional fallback -->
                 Your browser does not support the video tag.
             </video>
@@ -27,12 +30,14 @@
                     </div>
                     <div class="l line1"></div>
                     <div class="s step2">
-                        <img class="show" src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204480/hand-drawn_nxbhtn.png">
+                        <img class="show"
+                            src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204480/hand-drawn_nxbhtn.png">
                         <h2>2</h2>
                     </div>
                     <div class="l line2"></div>
                     <div class="s step3">
-                        <img class="show" src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204480/hand-drawn_nxbhtn.png">
+                        <img class="show"
+                            src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204480/hand-drawn_nxbhtn.png">
                         <h2>3</h2>
                     </div>
                 </div>
@@ -72,6 +77,10 @@
 
                                 <button type="submit">Send OTP</button>
                             </form>
+
+                            <br><br>
+                            <button class="votp" type="button">Have OTP?</button>
+
                         </div>
 
 
@@ -79,6 +88,11 @@
 
                         <!-- Verify OTP Form -->
                         <div class="signbox2 <%= otp_stage ? "" : " show" %>">
+                            <button class="sback">
+                                <img class="imgs"
+                                    src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204451/back_kl8qov.png"
+                                    alt="Back">
+                            </button>
                             <div class="verify-container">
                                 <h2>Verify OTP</h2>
                                 <form action="/auth/verify-otp" method="POST" class="verify-form">
@@ -90,6 +104,10 @@
                                     </div>
 
                                     <button class="submit" type="submit">Verify Email & Sign-Up</button>
+                                </form>
+                                <form action="/auth/resend-otp" method="POST" class="verify-form">
+
+                                    <button class="submit" type="submit">Resend OTP</button>
                                 </form>
                             </div>
                         </div>
@@ -139,6 +157,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
+        const vOTP = document.querySelector(".votp");
+        const sback = document.querySelector(".sback");
         const signsub = document.querySelector(".signup-form");
         const signbox1 = document.querySelector(".signbox1");
         const signbox2 = document.querySelector(".signbox2");
@@ -147,6 +167,18 @@
         const verified = document.querySelector(".verify-form");
         const logined = document.querySelector(".login-form");
 
+
+        vOTP.addEventListener("click", (e) => {
+            signbox2.classList.remove("show");
+            signbox1.classList.add("show");
+
+        });
+
+        sback.addEventListener("click", (e) => {
+            signbox2.classList.add("show");
+            signbox1.classList.remove("show");
+
+        });
 
         signsub.addEventListener("submit", (e) => {
             signbox2.classList.remove("show");
@@ -171,6 +203,12 @@
                 height: "200px",
             });
             verified.submit();
+        });
+
+        const otpInput = document.getElementById("otp");
+
+        otpInput.addEventListener("input", () => {
+            otpInput.value = otpInput.value.replace(/\s+/g, ""); // remove all spaces
         });
 
         const signupBtn = document.querySelector(".signUp");

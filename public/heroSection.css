@@ -396,12 +396,13 @@ path{
 }
 
 .signbox1{
-    bottom: -100px;
+    bottom: -155px;
 }
 
 
 .signbox2 {
     width: 70%;
+        bottom: -60px;
 }
 input{
     width: 95%;

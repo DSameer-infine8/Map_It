@@ -204,3 +204,26 @@ button{
     position: absolute;
     bottom:-20px;
 }
+
+.signbox1{
+    position: absolute;
+
+}
+
+.votp{
+    all: unset;
+        cursor: pointer;
+        text-decoration: underline;
+}
+
+.sback img{
+    margin-top: 10px;
+    padding-top: 10px;
+    height: 40px;
+}
+
+.sback{
+        all: unset;
+            cursor: pointer;
+
+}
