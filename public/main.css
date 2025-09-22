@@ -15,7 +15,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-bottom: 50px;
+    padding-bottom: 1150px;
+    
 }
 
 .boxs{
@@ -461,6 +462,7 @@
 }
 
 .core-tech p{
+    color:black;
     margin: 5px 5px;
     padding: 2px;
     background-color: #a7a7a7;
