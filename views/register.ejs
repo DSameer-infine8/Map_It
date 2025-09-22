@@ -17,7 +17,8 @@
         <div class="left">
             <video class="bg-video" autoplay muted loop playsinline disablePictureInPicture
                 oncontextmenu="return false;">
-                <source src="https://res.cloudinary.com/dr1ikaabc/video/upload/v1758208830/Wavy_ld8epb.mp4" type="video/mp4">
+                <source src="https://res.cloudinary.com/dr1ikaabc/video/upload/v1758208830/Wavy_ld8epb.mp4"
+                    type="video/mp4">
                 <!-- optional fallback -->
                 Your browser does not support the video tag.
             </video>
@@ -81,6 +82,9 @@
 
                                                 <button type="submit">Send OTP</button>
                                             </form>
+
+                                            <br><br>
+                                            <button class="votp" type="button">Have OTP?</button>
                                         </div>
 
 
@@ -89,6 +93,11 @@
                                         <!-- Verify OTP Form -->
                                         <div class="signbox2 <%= otp_stage ? "" : " show" %>">
                                             <div class="verify-container">
+                                                <button class="sback">
+                                                    <img class="imgs"
+                                                        src="https://res.cloudinary.com/dr1ikaabc/image/upload/v1758204451/back_kl8qov.png"
+                                                        alt="Back">
+                                                </button>
                                                 <h2>Verify OTP</h2>
                                                 <form action="/auth/home/verify-otp" method="POST" class="verify-form">
 
@@ -145,9 +154,24 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
+        const vOTP = document.querySelector(".votp");
+        const sback = document.querySelector(".sback");
         const signsub = document.querySelector(".signup-form");
         const signbox1 = document.querySelector(".signbox1");
         const signbox2 = document.querySelector(".signbox2");
+
+
+        vOTP.addEventListener("click", (e) => {
+            signbox2.classList.remove("show");
+            signbox1.classList.add("show");
+
+        });
+
+        sback.addEventListener("click", (e) => {
+            signbox2.classList.add("show");
+            signbox1.classList.remove("show");
+
+        });
 
 
         const verified = document.querySelector(".verify-form");
