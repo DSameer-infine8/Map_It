@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="recommend.css">
     <link rel="stylesheet" href="heroSection.css">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="responsive.css">
 </head>
 
 <body class="dark-mode">
@@ -35,7 +36,25 @@
                     </div>
                     <% } %>
 
+                        <button id="hamburger-btn">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </button>
+
             </nav>
+
+            <div id="mobile-menu">
+                <button id="close-btn">&times;</button>
+                <% if (userId) { %>
+                    <form action="/auth/logout" method="POST">
+                        <button class="logout" type="submit">Log-Out</button>
+                    </form>
+                    <% } else { %>
+                        <a href="/register" class="login">Log-in</a>
+                        <a href="/register" class="signup">Sign-Up</a>
+                        <% } %>
+            </div>
             <div class="svgg">
                 <svg width="1900" height="200" stroke-width="3">
                     <path d="M 20 10 Q 300 10 1500 10" stroke="black" fill="transparent" />
@@ -382,6 +401,21 @@
                 }
             });
         });
+
+        // Hamburger Menu Functionality
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-btn');
+
+        if (hamburgerBtn && mobileMenu && closeBtn) {
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        }
 
 
 

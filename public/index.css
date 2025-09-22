@@ -498,3 +498,130 @@ p{
 .guide img{
     height: 70px;
 }
+
+
+
+
+/*responsive */
+
+        /* index.html */
+    
+
+                @media (max-width: 768px) {
+        /* --- Top Section Adjustments --- */
+        .top {
+            height: auto;
+            padding-bottom: 20px;
+        }
+    
+        .title-name {
+            flex-direction: column;
+            text-align: center;
+            font-size: 16px;
+        }
+    
+        .desc {
+            text-align: center;
+            padding: 0 15px;
+            font-size: 18px;
+        }
+    
+        /* Hide the large decorative background image on mobile */
+        .top>img {
+            display: none;
+        }
+    
+        /* Re-position the 'What, Why, When' box */
+        .threeW {
+            position: relative;
+            top: 0;
+            right: 0;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 20px;
+        }
+    
+        .threeW-box {
+            width: 90%;
+            margin: 20px auto 0 auto;
+        }
+    
+        .threebox {
+            width: 100%;
+        }
+    
+        /* --- Main Roadmap Section --- */
+    
+        .main {
+            /* Remove the negative top margin */
+            top: 0;
+            width: 100%;
+            border-radius: 20px 20px 0 0;
+            /* Adjust height dynamically in JS */
+        }
+    
+        .skill-title {
+            font-size: 2rem;
+            text-align: center;
+            width: 90%;
+        }
+    
+        .guide {
+            /* Center the "Click It" helper text */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+        }
+    
+        /* --- The Core Timeline Change --- */
+    
+        .grid-container {
+            width: 95%;
+            /* Add some spacing on the sides */
+        }
+    
+        .grid-line {
+            /* Change grid to two columns: timeline circle + content */
+            grid-template-columns: 60px 1fr;
+            grid-gap: 15px;
+            /* Add space between circle and content */
+        }
+    
+        /* Force ALL content cards to the RIGHT side */
+        .grid-line .left,
+        .grid-line .right {
+            grid-column: 2;
+            /* This moves all content to the second column */
+            justify-content: flex-start;
+            /* Align content to the left */
+            align-items: flex-start;
+            text-align: left;
+        }
+    
+        .left h2,
+        .right h2 {
+            text-align: left;
+        }
+    
+        /* Re-align list items inside the 'left' cards */
+        .left li {
+            justify-content: flex-start;
+        }
+    
+        .left .lists {
+            margin-right: 0;
+            margin-left: 25px;
+            /* Match the 'right' side margin */
+        }
+    
+        .left strong {
+            position: static;
+            /* Fix absolutely positioned sub-headings */
+        }
+    
+        /* Hide the decorative connector box as it won't align properly */
+        .box {
+            display: none !important;
+        }
+
+        }
