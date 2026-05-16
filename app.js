@@ -1,9 +1,15 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const port = process.env.PORT;
-//const mongoURL = process.env.mongoURL;
+const port = 8080;
+//const db_url = "mongodb://127.0.0.1:27017/map_it";
+
+
 const db_url = process.env.ATLAS_DB_URL;
+
+if (!db_url) {
+    throw new Error("ATLAS_DB_URL is missing in environment variables");
+}
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -28,20 +34,20 @@ app.use(methodOverride("_method"));
 const store = MongoStore.create({
     mongoUrl: db_url,
     crypto: {
-        secret: 'mysupersecretkey'
+        secret: process.env.SESSION_SECRET,
     },
     touchAfter: 24 * 3600, //passed in sec not milli sec
 });
 
-store.on("error", () => {
-    console.log("error in Mongo Session Store", err);
-})
+store.on("error", (err) => {
+    console.log("Mongo Session Store Error:", err);
+});
 
 
 
 const sessionOptions = {
     store,
-    secret: 'mysupersecretkey',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
