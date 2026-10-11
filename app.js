@@ -2,22 +2,13 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const port = 8080;
-//const db_url = "mongodb://127.0.0.1:27017/map_it";
-
-
-const db_url = process.env.ATLAS_DB_URL;
-
-if (!db_url) {
-    throw new Error("ATLAS_DB_URL is missing in environment variables");
-}
 
 const express = require("express");
-const mongoose = require("mongoose");
 const Card = require("./models/roadmap");
 const path = require("path");
 const methodOverride = require("method-override");
 const session = require('express-session');
-const MongoStore = require("connect-mongo");
+const SupabaseSessionStore = require("./middleware/supabaseSession");
 const flash = require('connect-flash');
 const app = express();
 
@@ -29,61 +20,41 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // 👈 Needed to parse JSON from fetch()
 app.use(methodOverride("_method"));
 
-
-
-const store = MongoStore.create({
-    mongoUrl: db_url,
-    crypto: {
-        secret: process.env.SESSION_SECRET,
-    },
-    touchAfter: 24 * 3600, //passed in sec not milli sec
-});
-
-store.on("error", (err) => {
-    console.log("Mongo Session Store Error:", err);
-});
-
-
+const store = new SupabaseSessionStore();
 
 const sessionOptions = {
     store,
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true
     }
-}
-
+};
 
 app.use(session(sessionOptions));
 
 app.use(flash());
 
-
 const wrapAsync = require("./middleware/asyncWrap");
 const User = require('./models/User');
 
-
-
-// Fetch Role-Based Cards for /home
+// Fetch Cards for /home
 let roleBasedCards, skillBasedCards, projectBasedCards;
 const dis = async () => {
     roleBasedCards = await Card.find({ type: "Role-Based" });
     skillBasedCards = await Card.find({ type: "Skill-Based" });
     projectBasedCards = await Card.find({ type: "Project-Based" });
-}
+};
 
-
-
-// MongoDB Connection
+// Supabase Initialization
 const main = async () => {
-    await mongoose.connect(db_url);
     await dis();
-}
-main().then(() => { console.log("Connection Successful") }).catch((err) => { console.log(err) });
+    console.log("Supabase connection established and card cache loaded.");
+};
+main().catch((err) => { console.error("Initialization error:", err); });
 
 
 

@@ -43,52 +43,27 @@
 - 🎨 **Dynamic UI** using **EJS templates**  
 
 
-- 🗄️ **MongoDB Database** with **Mongoose ORM**  
-
-
-
-
+- 🗄️ **Supabase Database** (PostgreSQL)  
 
 ---
 
-
-
-
-
 ## 🛠️ Tech Stack
-
-
-
-
 
 **Frontend**  
 
-
 - HTML, CSS, JavaScript  
-
 
 - EJS (Embedded JavaScript Templates)  
 
-
-
-
-
 **Backend**  
-
 
 - Node.js  
 
-
 - Express.js  
-
-
-
-
 
 **Database**  
 
-
-- MongoDB + Mongoose  
+- Supabase (PostgreSQL)  
 
 
 
