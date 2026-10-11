@@ -96,13 +96,13 @@ video {
 }
 
 .line1 {
-    top: 114px;
-    height: 146px;
+    top: 130px;
+    height: 175px;
 }
 
 .line2 {
-    top: 304px;
-    height: 148px;
+    top: 348px;
+    height: 176px;
 }
 
 .right {
@@ -116,7 +116,8 @@ video {
     overflow: hidden;
     overflow-y: scroll;
 }
-.road{
+
+.road {
     background-color: var(--bg-200);
     height: auto;
     width: calc(90% + 20px);
@@ -125,7 +126,8 @@ video {
     margin-bottom: 30px;
 
 }
-.road-title{
+
+.road-title {
     margin-top: 80px;
 }
 
@@ -145,7 +147,7 @@ h4 {
     display: none;
 }
 
-.topreco{
+.topreco {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,7 +155,7 @@ h4 {
     padding: 10px;
 }
 
-.recommended{
+.recommended {
     color: black;
     font-weight: 100;
     padding: 5px;
@@ -163,7 +165,7 @@ h4 {
     background-color: var(--accent-100);
 }
 
-.placed{
+.placed {
     position: absolute;
     font-weight: 100;
     left: 15px;
@@ -176,40 +178,43 @@ h4 {
     align-items: center;
 }
 
-.toprecommends{
+.toprecommends {
     position: relative;
-        height: 185px;
-            width: 90%;
-            background-color: var(--bg-200);
-            padding: 10px;
-            border-radius: 1.5rem;
-            top:50px;     
+    height: 185px;
+    width: 90%;
+    background-color: var(--bg-200);
+    padding: 10px;
+    border-radius: 1.5rem;
+    top: 50px;
 }
 
-.color1{
+.color1 {
     background-color: var(--primary-100);
 }
+
 .color2 {
     background-color: var(--primary-200);
 }
+
 .color3 {
     background-color: var(--primary-300);
 }
 
-.boxs{    overflow-x: scroll;
+.boxs {
+    overflow-x: scroll;
     gap: 10px;
     scrollbar-width: none;
-        /* hides scrollbar */
-        -ms-overflow-style: none;
-        /* IE & old Edge */
+    /* hides scrollbar */
+    -ms-overflow-style: none;
+    /* IE & old Edge */
 }
 
-.box{
+.box {
     position: relative;
     border-radius: 2rem;
 }
 
-.btn{
+.btn {
     position: static;
     bottom: 10px;
     position: absolute;
@@ -217,27 +222,27 @@ h4 {
 
 
 
-.backHome img{
+.backHome img {
     height: 60px;
     filter: none;
 }
 
-.backHome{
+.backHome {
     display: flex;
     justify-content: center;
     align-items: center;
-        border: 3px solid white;
-            padding: 5px;
-            border-radius: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-}
-
-.backHome a{
+    border: 3px solid white;
+    padding: 5px;
+    border-radius: 1rem;
+    cursor: pointer;
     text-decoration: none;
 }
 
-.backHome h3{
+.backHome a {
+    text-decoration: none;
+}
+
+.backHome h3 {
     color: #FFFFFF;
     text-decoration: none;
 }

@@ -95,12 +95,12 @@ video {
 }
 
 .line1 {
-    top: 123px;
-    height: 166px;
+    top: 142px;
+    height: 188px;
 }
 
 .line2 {
-    top: 330px
+    top: 375px;
 }
 
 .right {
@@ -120,12 +120,12 @@ video {
     color: #e0e0e0;
 }
 
-h4{
-            font-weight: 100;
-            color: #e0e0e0;
+h4 {
+    font-weight: 100;
+    color: #e0e0e0;
 }
 
-.show{
+.show {
     display: none;
 }
 
@@ -165,10 +165,10 @@ label {
     display: block;
     margin: 5px 0;
     cursor: pointer;
-        font-family: "Quicksand", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 1000;
-            font-style: normal;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 1000;
+    font-style: normal;
 }
 
 button {
